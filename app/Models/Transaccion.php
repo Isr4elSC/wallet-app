@@ -29,4 +29,9 @@ class Transaccion extends Model
     {
         return $this->belongsTo(Comercio::class);
     }
+
+    public function monedero()
+    {
+        return $this->belongsTo(Monedero::class);
+    }
 }
