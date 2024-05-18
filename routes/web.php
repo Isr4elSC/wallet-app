@@ -47,3 +47,7 @@ Route::post('/transacciones/compra', [App\Http\Controllers\TransaccionController
 Route::post('/transacciones/recarga', [App\Http\Controllers\TransaccionController::class, 'realizarRecarga'])->name('transacciones.recarga');
 Route::get('/saldo', [App\Http\Controllers\SaldoController::class, 'obtenerSaldo'])->name('saldo');
 Route::get('/historial', [App\Http\Controllers\HistorialController::class, 'obtenerHistorial'])->name('historial');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
