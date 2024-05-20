@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Usuario;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UsuarioSeeder;
+use Database\Seeders\RoleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +23,9 @@ class DatabaseSeeder extends Seeder
         ]);*/
 
 
+
+        //Llamamos el seeder de roles
+        $this->call(RoleSeeder::class);
         //Llamamos el seeder de usuarios
         $this->call(UsuarioSeeder::class);
     }

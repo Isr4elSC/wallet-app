@@ -6,8 +6,8 @@ use App\Models\Usuario;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-
 use function Laravel\Prompts\password;
+use Spatie\Permission\Models\Role;
 
 class UsuarioSeeder extends Seeder
 {
@@ -21,13 +21,13 @@ class UsuarioSeeder extends Seeder
             'nombre' => 'Gian Garcia',
             'email' => 'gian09@gmail.com',
             'password' => Hash::make('12345678'),
-        ]);
+        ])->assignRole('Administrator');
 
         Usuario::factory()->create([
             'nombre' => 'Juan Perez',
             'email' => 'juan@gmail.com',
             'password' => Hash::make('12345678'),
-        ]);
+        ])->assignRole('Author');
 
         // Usuario::factory()->create([
         //     'nombre' => 'Maria Lopez',

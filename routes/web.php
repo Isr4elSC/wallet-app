@@ -23,4 +23,9 @@ Route::middleware('auth')->group(function () {
 });
 
 
+//Usuarios
+Route::resource('usuarios', 'UsuarioController')
+    ->except('create', 'store', 'destroy')
+    ->names('usuarios');
+
 require __DIR__ . '/auth.php';
