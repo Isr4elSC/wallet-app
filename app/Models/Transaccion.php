@@ -12,17 +12,20 @@ class Transaccion extends Model
     protected $table = 'transacciones';
 
     protected $fillable = [
-        'id_usuario',
+        // 'id_user',
+        'id_monedero',
         'id_comercio',
         'fecha_transaccion',
-        'monto',
+        'cantidad',
         'tipo_transaccion',
-        'estado'
+        'estado',
+        // 'created_at',
+        // 'updated_at'
     ];
 
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(User::class);
     }
 
     public function comercio()

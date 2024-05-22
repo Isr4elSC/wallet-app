@@ -11,17 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('perfiles', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->bigInteger('id_usuario')->unsigned()->index();
+            $table->string('nombre_completo');
             $table->date('fecha_nacimiento')->nullable();
             $table->string('telefono')->nullable();
             $table->string('direccion')->nullable();
-            $table->decimal('saldo_monedero', 10, 2)->default(0);
+            $table->decimal('saldo', 10, 2)->default(0);
             $table->string('foto_perfil')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('perfiles');
     }
 };

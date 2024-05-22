@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('transacciones', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_usuario')->unsigned()->index();
+            // $table->bigInteger('id_user')->unsigned()->index();
+            $table->bigInteger('id_monedero')->unsigned()->index(); // Allow null for non-commerce transactions (e.g., Recarga)
             $table->bigInteger('id_comercio')->unsigned()->nullable()->index(); // Allow null for non-commerce transactions (e.g., Recarga)
+
             $table->dateTime('fecha_transaccion');
-            $table->decimal('monto', 10, 2);
+            $table->decimal('cantidad', 10, 2);
             $table->enum('tipo_transaccion', ['Compra', 'Recarga', 'Premio'])->default('Compra');
             $table->enum('estado', ['Pendiente', 'Completada', 'Cancelada'])->default('Pendiente');
             $table->timestamps();
 
-            $table->foreign('id_usuario')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_comercio')->references('id')->on('comercios')->onDelete('cascade'); // Foreign key for id_comercio
         });
     }

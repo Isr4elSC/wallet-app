@@ -15,8 +15,10 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         //Roles 
-        $admin = Role::create(['name' => 'Administrator']);
-        $author = Role::create(['name' => 'Author']);
+        $admin = Role::create(['name' => 'Administrador']);
+        $cliente = Role::create(['name' => 'Cliente']);
+        $comercio = Role::create(['name' => 'Comercio']);
+
 
         //Permissions
         Permission::create(
@@ -24,7 +26,7 @@ class RoleSeeder extends Seeder
                 'name' => 'admin.index',
                 'description' => 'Ver el dashboard'
             ]
-        )->syncRoles($admin, $author);
+        )->syncRoles($admin, $cliente, $comercio);
 
         //Categories
         Permission::create(
@@ -32,7 +34,7 @@ class RoleSeeder extends Seeder
                 'name' => 'categories.index',
                 'description' => 'Ver listado de categorias'
             ]
-        )->syncRoles($admin, $author);
+        )->syncRoles($admin, $cliente, $comercio);
         Permission::create(
             [
                 'name' => 'categories.create',
@@ -59,25 +61,25 @@ class RoleSeeder extends Seeder
                 'name' => 'articles.index',
                 'description' => 'Ver listado de articulos'
             ]
-        )->syncRoles($admin, $author);
+        )->syncRoles($admin, $cliente, $comercio);
         Permission::create(
             [
                 'name' => 'articles.create',
                 'description' => 'Crear articulos'
             ]
-        )->syncRoles($admin, $author);
+        )->syncRoles($admin, $cliente, $comercio);
         Permission::create(
             [
                 'name' => 'articles.edit',
                 'description' => 'Editar articulos'
             ]
-        )->syncRoles($admin, $author);
+        )->syncRoles($admin, $cliente, $comercio);
         Permission::create(
             [
                 'name' => 'articles.destroy',
                 'description' => 'Eliminar articulos'
             ]
-        )->syncRoles($admin, $author);
+        )->syncRoles($admin, $cliente, $comercio);
 
 
         //comentarios
@@ -86,12 +88,12 @@ class RoleSeeder extends Seeder
                 'name' => 'comments.index',
                 'description' => 'Ver listado de comentarios'
             ]
-        )->syncRoles($admin, $author);
+        )->syncRoles($admin, $cliente, $comercio);
         Permission::create(
             [
                 'name' => 'comments.destroy',
                 'description' => 'Eliminar comentarios'
             ]
-        )->syncRoles($admin, $author);
+        )->syncRoles($admin, $cliente, $comercio);
     }
 }
