@@ -7,7 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\Usuario;
+use App\Models\User;
 
 class WelcomeEmail extends Notification
 {
@@ -18,7 +18,7 @@ class WelcomeEmail extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(Usuario $user)
+    public function __construct(User $user)
     {
         //
 

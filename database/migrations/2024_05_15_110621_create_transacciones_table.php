@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             // $table->bigInteger('id_user')->unsigned()->index();
             $table->bigInteger('id_monedero')->unsigned()->index(); // Allow null for non-commerce transactions (e.g., Recarga)
-            $table->bigInteger('id_comercio')->unsigned()->nullable()->index(); // Allow null for non-commerce transactions (e.g., Recarga)
+            $table->bigInteger('id_comercio')->unsigned()->index(); // Allow null for non-commerce transactions (e.g., Recarga)
 
             $table->dateTime('fecha_transaccion');
             $table->decimal('cantidad', 10, 2);
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->enum('estado', ['Pendiente', 'Completada', 'Cancelada'])->default('Pendiente');
             $table->timestamps();
 
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_monedero')->references('id')->on('monederos')->onDelete('cascade');
             $table->foreign('id_comercio')->references('id')->on('comercios')->onDelete('cascade'); // Foreign key for id_comercio
         });
     }

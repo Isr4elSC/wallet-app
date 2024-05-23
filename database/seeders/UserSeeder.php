@@ -29,6 +29,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
         ])->assignRole('Comercio');
 
-        User::factory(10)->create()->assignRole('Cliente');
+        User::factory(10)->create();
     }
 }
