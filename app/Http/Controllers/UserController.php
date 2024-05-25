@@ -29,41 +29,77 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        return view('users.create', ['user' => new User()]);
     }
 
     public function edit(User $user)
     {
-        //recuperar el listado de roles
-        $roles = Role::all();
-        return view('admin.users.edit', compact('user', 'roles'));
+        // //recuperar el listado de roles
+        // $roles = Role::all();
+        // return view('admin.users.edit', compact('user', 'roles'));
+        return view('users.edit', ['user' => $user]);
     }
 
     public function update(Request $request, User $user)
     {
         //Llanar la tabla de intermedia
-        $user->roles()->sync($request->role);
-        return redirect()->route('users.edit', $user)
-            ->with('success-update', 'Rol establecido correctamente');
+        // $user->roles()->sync($request->role);
+        // return redirect()->route('users.edit', $user)
+        //     ->with('success-update', 'Rol establecido correctamente');
+        $validated = $request->validate([
+            'nombre' => 'required',
+            'email' => 'required|email',
+        ]);
+        // $user->update($request->all());
+        // $user->update($request->only('nombre', 'email'));
+        // $user->password = bcrypt($request->password);
+
+
+        // $user->nombre = $request->nombre;
+        // $user->email = $request->email;
+        // $user->save();
+
+        // $user->update([
+        //     'nombre' => $request->nombre,
+        //     'email' => $request->email,
+        // ]);
+
+        $user->update($validated);
+
+        session()->flash('status', 'Usuario actualizado correctamente');
+        return to_route('user.show', $user);
     }
 
     public function destroy(User $user)
     {
-
         $user->delete();
-        return redirect()->action('index')
-            ->with('success-delete', 'Usuario eliminado correctamente');
+        session()->flash('status', 'Usuario borrado correctamente');
+        return to_route('users.index');
     }
 
     public function store(Request $request)
     {
-        $user = new User();
-        $user->nombre = $request->nombre;
-        $user->email = $request->email;
-        // $user->password = $request->password;
-        $user->password = bcrypt($request->password);
-        $user->save();
-        return redirect()->route('users.index')
-            ->with('success-store', 'Usuario creado correctamente');
+        $validated = $request->validate([
+            'nombre' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        // $user = new User();
+        // $user->nombre = $request->nombre;
+        // $user->email = $request->email;
+        // // $user->password = $request->password;
+        // $user->password = bcrypt($request->password);
+        // $user->save();
+
+        // User::create([
+        //     'nombre' => $request->nombre,
+        //     'email' => $request->email,
+        //     'password' => bcrypt($request->password),
+        // ]);
+
+        User::create($validated);
+        session()->flash('status', 'Usuario creado correctamente');
+        // return redirect()->route('users.index')->with('success-store', 'Usuario creado correctamente');
+        return to_route('users.index');
     }
 }
