@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Comercio extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'comercios';
 
     protected $fillable = [
+        'user_id',
         'nombre_comercio',
         'descripcion',
         'categoria',
@@ -21,7 +22,9 @@ class Comercio extends Model
         'logo',
         'pagina_web',
         'calificacion',
-        'saldo_disponible'
+        'saldo_disponible',
+        'created_at',
+        'updated_at'
     ];
 
     public function transacciones()

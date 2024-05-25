@@ -12,13 +12,16 @@ class Monedero extends Model
     protected $table = 'monederos';
 
     protected $fillable = [
+        'id',
         'id_usuario',
-        'saldo'
+        'saldo',
+        'created_at',
+        'updated_at'
     ];
 
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(User::class);
     }
 
 

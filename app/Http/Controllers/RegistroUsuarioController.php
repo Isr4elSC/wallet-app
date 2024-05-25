@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use App\Models\User;
 
 class RegistroUsuarioController extends Controller
 {
@@ -18,7 +18,7 @@ class RegistroUsuarioController extends Controller
         ]);
 
         // Crear usuario en la base de datos
-        $usuario = Usuario::create($datos);
+        $usuario = User::create($datos);
 
         // Enviar correo electrónico de confirmación (opcional)
 
