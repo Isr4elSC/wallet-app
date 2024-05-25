@@ -12,9 +12,11 @@ class UserController extends Controller
     //
     public function index()
     {
-        $users = User::simplePaginate(10);
+        // $users = User::simplePaginate(10);
+        $users = User::get();
         // return view('admin.users.index', compact('users'));
-        return view('users.index', compact('users'));
+        // return view('users.index', compact('users'));
+        return view('users.index', ['users' => $users]);
     }
 
     public function show(User $user)
@@ -23,6 +25,11 @@ class UserController extends Controller
         // return $user;
         // return User::findOrFail($user);
         return view('users.show', ['user' => $user]);
+    }
+
+    public function create()
+    {
+        return view('users.create');
     }
 
     public function edit(User $user)
@@ -46,5 +53,17 @@ class UserController extends Controller
         $user->delete();
         return redirect()->action('index')
             ->with('success-delete', 'Usuario eliminado correctamente');
+    }
+
+    public function store(Request $request)
+    {
+        $user = new User();
+        $user->nombre = $request->nombre;
+        $user->email = $request->email;
+        // $user->password = $request->password;
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return redirect()->route('users.index')
+            ->with('success-store', 'Usuario creado correctamente');
     }
 }

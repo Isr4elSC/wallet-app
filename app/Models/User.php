@@ -11,7 +11,6 @@ use App\Models\Transaccion;
 use App\Models\ParticipacionSorteo;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
-use App\Http\Controllers\UserController;
 
 class User extends Authenticatable
 {

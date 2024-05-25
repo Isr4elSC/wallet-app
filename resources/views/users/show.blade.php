@@ -4,5 +4,5 @@
     <p>{{ $user->email }}</p>
     <p>{{ $user->created_at }}</p>
     <p>{{ $user->updated_at }}</p>
-    <a href="{{ route('users') }}">Volver</a>
+    <a href="{{ route('users.index') }}">Volver</a>
 </x-layouts.app>
