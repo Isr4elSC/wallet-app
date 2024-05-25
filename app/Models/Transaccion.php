@@ -19,8 +19,8 @@ class Transaccion extends Model
         'cantidad',
         'tipo_transaccion',
         'estado',
-        // 'created_at',
-        // 'updated_at'
+        'created_at',
+        'updated_at'
     ];
 
     public function usuario()

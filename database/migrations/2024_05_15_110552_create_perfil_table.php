@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('perfiles', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_usuario')->unsigned()->index();
+            $table->bigInteger('user_id')->unsigned()->index();
             $table->string('nombre_completo');
             $table->date('fecha_nacimiento')->nullable();
             $table->string('telefono')->nullable();
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('foto_perfil')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

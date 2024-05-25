@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MonederoController;
+use App\Http\Controllers\ComercioController;
+use App\Http\Controllers\TransaccionController;
 use Illuminate\Support\Facades\Route;
 use Whoops\Run;
 
@@ -15,23 +18,24 @@ Route::get('/', function () {
 });
 
 
-//Rutas de ejemplo
-//personal site.com => /inicio
+//Rutas de la aplicacion
 Route::view('/inicio', 'inicio')->name('inicio');
-//personal site.com/contacto => /contacto
-Route::view('/contacto', 'contacto')->name('contacto');
-//personal site.com/blog => /blog
-// Route::view('/blog', 'blog')->name('blog');
-Route::get('/blog', [PostController::class, 'index'])->name('blog');
-//personal site.com/about => /about
-Route::view('/about', 'about')->name('about');
+
+Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
+Route::get('/monederos', [MonederoController::class, 'index'])->name('monederos');
+// Route::get('monederos/{$monedero}', [MonederoController::class, 'index'])->name('monedero.show');
+Route::get('/transacciones', [TransaccionController::class, 'index'])->name('transacciones');
+// Route::get('transacciones/{$transaccion}', [TransaccionController::class, 'index'])->name('transacciones.index');
+Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios');
+// Route::get('comercios/{$comercio}', [ComercioController::class, 'index'])->name('comercios.show');
 
 
 //ADMINISTRADOR
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
-//CATEGORIAS
 
+//Rutas de autenticacion
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

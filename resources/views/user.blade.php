@@ -8,11 +8,12 @@
 @endsection --}}
 
 <x-layouts.app title="Blog" meta-description="meta descripción del Blog">
-    <h1>Blog</h1>
+    <h1>Usuarios</h1>
 
-    @foreach ($usuarios as $usuario)
+    @foreach ($users as $usuario)
         {{-- @dump($usuario) --}}
         <h3>{{ $usuario->nombre }}</h3>
+        <a href="{{ route('user.show', $usuario) }}">Ver detalles</a>
     @endforeach
 
 </x-layouts.app>

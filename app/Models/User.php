@@ -17,7 +17,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
-    protected $table = 'users';
+    // protected $table = 'users';
 
     protected $fillable = [
         'nombre',
@@ -62,30 +62,10 @@ class User extends Authenticatable
             ->with('success-update', 'Se actualizó el usuario correctamente');
     }
 
-    public function monedero()
-    {
-        return $this->hasOne(Monedero::class);
-    }
-
-    // public function perfil()
-    // {
-    //     return $this->hasOne(Perfil::class);
-    // }
-
     public function delete()
     {
         $this->perfil->delete();
         $this->monedero->delete();
         return parent::delete();
-    }
-
-    public function transacciones()
-    {
-        return $this->hasMany(Transaccion::class);
-    }
-
-    public function participacionesSorteos()
-    {
-        return $this->hasMany(ParticipacionSorteo::class);
     }
 }

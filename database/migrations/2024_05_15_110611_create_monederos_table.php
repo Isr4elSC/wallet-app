@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('monederos', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_usuario')->unsigned()->index();
+            $table->decimal('saldo', 8, 2);
+            // $table->string('tipo');
+            // $table->string('estado');
+            // $table->string('descripcion');
+            // $table->string('codigo');
+            // $table->string('referencia');
+            // $table->string('comentario');
             $table->timestamps();
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
