@@ -21,8 +21,12 @@ Route::get('/', function () {
 //Rutas de la aplicacion
 Route::view('/inicio', 'inicio')->name('inicio');
 
-Route::get('/user', [UserController::class, 'index'])->name('user');
-Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
+Route::get('/users', [UserController::class, 'index'])->name('user.index');
+// Route::get('/users/{user}', [UserController::class, 'show'])->name('user.show');
+Route::get('/users/{user}', [UserController::class, 'edit'])->name('user.show');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::patch('/users/{user}', [UserController::class, 'update'])->name('user.update');
+route::delete('/users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 Route::get('/monederos', [MonederoController::class, 'index'])->name('monederos');
 // Route::get('monederos/{$monedero}', [MonederoController::class, 'index'])->name('monedero.show');
 Route::get('/transacciones', [TransaccionController::class, 'index'])->name('transacciones');

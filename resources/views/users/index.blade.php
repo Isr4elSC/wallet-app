@@ -1,6 +1,6 @@
 {{-- @extends('layouts.webapp')
-@section('title','Blog')
-@section('meta-description','Informacion del blog de la issan.dev - wallet')
+@section('title', 'Blog')
+@section('meta-description', 'Informacion del blog de la issan.dev - wallet')
 
 @section('content')
 <h1>Blog</h1>

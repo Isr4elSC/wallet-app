@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         $users = User::simplePaginate(10);
         // return view('admin.users.index', compact('users'));
-        return view('user', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     public function show(User $user)
@@ -22,7 +22,7 @@ class UserController extends Controller
         // return view('admin.users.show', compact('user'));
         // return $user;
         // return User::findOrFail($user);
-        return view('users.show');
+        return view('users.show', ['user' => $user]);
     }
 
     public function edit(User $user)
