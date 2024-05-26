@@ -33,38 +33,43 @@ class User extends Authenticatable
         'password'
     ];
 
-    public function index()
-    {
-        $usuarios = User::simplePaginate(5);
-        return view('admin.usuarios.index', compact('usuarios'));
-    }
+    // public function index()
+    // {
+    //     $usuarios = User::simplePaginate(5);
+    //     return view('admin.usuarios.index', compact('usuarios'));
+    // }
 
-    public function edit(User $user)
-    {
-        //recuperar el listado de roles
-        $roles = Role::all();
-        return view('admin.users.edit', compact('user', 'roles'));
-    }
+    // public function edit(User $user)
+    // {
+    //     //recuperar el listado de roles
+    //     $roles = Role::all();
+    //     return view('admin.users.edit', compact('user', 'roles'));
+    // }
 
-    /**
-     * Actualizar los roles del usuario
-     * 
-     * @param Request $request
-     * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
-     * 
-     */
-    public function actualizar(Request $request, User $user)
-    {
-        $user->roles()->sync($request->role);
-        return redirect()->route('users.edit', $user)
-            ->with('success-update', 'Se actualizó el usuario correctamente');
-    }
+    // /**
+    //  * Actualizar los roles del usuario
+    //  * 
+    //  * @param Request $request
+    //  * @param User $user
+    //  * @return \Illuminate\Http\RedirectResponse
+    //  * 
+    //  */
+    // public function actualizar(Request $request, User $user)
+    // {
+    //     $user->roles()->sync($request->role);
+    //     return redirect()->route('users.edit', $user)
+    //         ->with('success-update', 'Se actualizó el usuario correctamente');
+    // }
 
-    public function delete()
+    // public function delete()
+    // {
+    //     // $this->perfil->delete();
+    //     $this->monedero->delete();
+    //     return parent::delete();
+    // }
+
+    public function monedero()
     {
-        $this->perfil->delete();
-        $this->monedero->delete();
-        return parent::delete();
+        return $this->hasOne(Monedero::class)->withDefault('saldo', 0);
     }
 }

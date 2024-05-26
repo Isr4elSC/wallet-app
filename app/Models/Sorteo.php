@@ -12,22 +12,21 @@ class Sorteo extends Model
     protected $table = 'sorteos';
 
     protected $fillable = [
-        'nombre_sorteo',
         'descripcion',
         'fecha_inicio',
         'fecha_fin',
         'premio',
-        'numero_ganadores',
+        'id_monedero',
         'condiciones'
     ];
 
-    public function comercio()
-    {
-        return $this->belongsTo(Comercio::class);
-    }
+    // public function comercio()
+    // {
+    //     return $this->belongsTo(Comercio::class);
+    // }
 
-    public function participaciones()
-    {
-        return $this->hasMany(ParticipacionSorteo::class);
-    }
+    // public function participaciones()
+    // {
+    //     return $this->hasMany(ParticipacionSorteo::class);
+    // }
 }

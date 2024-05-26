@@ -1,5 +1,5 @@
 <x-layouts.app header="Crear usuarios" title="Creacion de usuario" meta-description="formulario de creación de usuario">
-    <form action="{{ route('user.store') }}" method="POST">
+    <form action="{{ route('users.store') }}" method="POST">
         @csrf
         {{-- @dump($errors->all()) --}}
 

@@ -16,20 +16,25 @@
         <div class="status">{{ $value }}</div>
     @endsession --}}
 
-    <a href="{{ route('user.create') }}">Crear usuario</a>
+    <a href="{{ route('users.create') }}">Crear usuario</a>
     {{-- @dump($users) --}}
     @foreach ($users as $user)
         {{-- @dump($usuario) --}}
         <div style="display:flex;gap:5px;align-items:baseline;border-top:1px solid grey;margin-top:5px">
-            <h3>{{ $user->nombre }}</h3>
-            <a class="btn" href="{{ route('user.show', $user) }}">Ver detalles</a> |
-            <a href="{{ route('user.edit', $user) }}">Editar</a> |
-            <form method="POST" action="{{ route('user.destroy', $user) }}">
+            {{ $user->nombre }} |
+            {{ $user->email }} |
+            {{ $user->monedero->saldo }} |
+            <a href="{{ route('users.show', $user) }}">Ver detalles</a> |
+            <a href="{{ route('users.edit', $user) }}">Editar</a> |
+            {{-- <a href="{{ route('user.destroy', $user) }}">Eliminar</a> | --}}
+            <form method="POST" action="{{ route('users.destroy', $user) }}">
                 @csrf
                 @method('DELETE')
                 <input type="submit" value="Eliminar" />
             </form>
         </div>
     @endforeach
-
+    {{-- @dump($users) --}}
+    {{-- @dump($users->links()) --}}
+    {{ $users->onEachSide(5)->links() }}
 </x-layouts.app>

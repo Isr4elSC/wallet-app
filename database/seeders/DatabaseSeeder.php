@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         User::factory(20)->create();
         Comercio::factory(10)->create();
         Monedero::factory(10)->create();
-        Transaccion::factory(10)->create();
+        Transaccion::factory(50)->create();
 
 
 

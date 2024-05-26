@@ -9,14 +9,12 @@ class Monedero extends Model
 {
     use HasFactory;
 
-    protected $table = 'monederos';
+    // protected $table = 'monederos';
 
     protected $fillable = [
-        'id',
-        'id_usuario',
+        'user_id',
         'saldo',
-        'created_at',
-        'updated_at'
+
     ];
 
     public function usuario()

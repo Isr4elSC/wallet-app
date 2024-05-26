@@ -14,6 +14,6 @@ class ComercioController extends Controller
     {
         $comercios = Comercio::all();
         // return response()->json($comercios);
-        return view('comercio', compact('comercios'));
+        return view('comercios.index', compact('comercios'));
     }
 }

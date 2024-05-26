@@ -13,9 +13,12 @@ class UserController extends Controller
     public function index()
     {
         // $users = User::simplePaginate(10);
-        $users = User::get();
+        // $users = User::get();
+        $users = User::simplePaginate(10);
+
         // return view('admin.users.index', compact('users'));
         // return view('users.index', compact('users'));
+
         return view('users.index', ['users' => $users]);
     }
 
@@ -24,6 +27,7 @@ class UserController extends Controller
         // return view('admin.users.show', compact('user'));
         // return $user;
         // return User::findOrFail($user);
+
         return view('users.show', ['user' => $user]);
     }
 
@@ -66,15 +70,18 @@ class UserController extends Controller
 
         $user->update($validated);
 
-        session()->flash('status', 'Usuario actualizado correctamente');
-        return to_route('user.show', $user);
+        // session()->flash('status', 'Usuario actualizado correctamente');
+        // return to_route('user.show', $user);
+
+        return redirect()->route('users.show', $user)->with('status', 'Usuario actualizado correctamente');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        session()->flash('status', 'Usuario borrado correctamente');
-        return to_route('users.index');
+        // session()->flash('status', 'Usuario borrado correctamente');
+        // return to_route('users.index');
+        return redirect()->route('users.index')->with('status', 'Usuario borrado correctamente');
     }
 
     public function store(Request $request)
@@ -98,8 +105,9 @@ class UserController extends Controller
         // ]);
 
         User::create($validated);
-        session()->flash('status', 'Usuario creado correctamente');
-        // return redirect()->route('users.index')->with('success-store', 'Usuario creado correctamente');
-        return to_route('users.index');
+        return redirect()->route('users.index')->with('success-store', 'Usuario creado correctamente');
+
+        // session()->flash('status', 'Usuario creado correctamente');
+        return to_route('users.index')->with('status', 'Usuario creado correctamente');
     }
 }

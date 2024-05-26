@@ -1,5 +1,5 @@
 <x-layouts.app header="Editar usuario" title="Editor de usuario" meta-description="formulario de creación de usuario">
-    <form action="{{ route('user.update', $user) }}" method="POST">
+    <form action="{{ route('users.update', $user) }}" method="POST">
         @csrf
         @method('PATCH')
 
