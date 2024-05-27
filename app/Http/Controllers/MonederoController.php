@@ -14,7 +14,8 @@ class MonederoController extends Controller
     public function index()
     {
         $monederos = Monedero::all();
-        return response()->json($monederos);
+        // return response()->json($monederos);
+        return view('monedero', compact('monederos'));
     }
 
     public function obtenerSaldo($id)
@@ -52,7 +53,7 @@ class MonederoController extends Controller
     {
         $datos = $request->validate([
             'id_monedero' => 'required|integer',
-            'monto' => 'required|numeric',
+            'cantidad' => 'required|numeric',
             'tipo' => 'required|string|in:deposito,retiro'
         ]);
 
