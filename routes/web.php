@@ -55,8 +55,15 @@ Route::delete('/transacciones/{transaccion}', [TransaccionController::class, 'de
 
 //Comercios
 // Route::get('transacciones/{$transaccion}', [TransaccionController::class, 'index'])->name('transacciones.index');
-Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.index');
-// Route::get('comercios/{$comercio}', [ComercioController::class, 'index'])->name('comercios.show');
+// Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.index');
+// Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.show');
+// Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.edit');
+// Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.update');
+// Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.destroy');
+Route::resource('comercios', ComercioController::class)
+    ->names('comercios');
+// ->middleware('auth')
+// ->middleware('can:manage-comercios' );
 
 
 //ADMINISTRADOR

@@ -105,7 +105,7 @@ class UserController extends Controller
         // ]);
 
         User::create($validated);
-        return redirect()->route('users.index')->with('success-store', 'Usuario creado correctamente');
+        // return redirect()->route('users.index')->with('success-store', 'Usuario creado correctamente');
 
         // session()->flash('status', 'Usuario creado correctamente');
         return to_route('users.index')->with('status', 'Usuario creado correctamente');
