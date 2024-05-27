@@ -44,19 +44,19 @@
         <!-- Page Content -->
         <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
             <main>
-                <div class="class="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900"">
-                    <div class="bg-white dark:bg-gray-800">
+                <div class="flex flex-col px-4 pt-6 dark:bg-gray-900">
+                    <div class="mb-4 col-span-full xl:mb-2">
                         <nav class="flex" aria-label="Breadcrumb">
                             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                                 <li class="inline-flex items-center">
-                                    <a href="#"
+                                    <a href="{{ route('inicio') }}"
                                         class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                                         <svg class="w-3 h-3 me-2.5" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                             <path
                                                 d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                                         </svg>
-                                        Home
+                                        Inicio
                                     </a>
                                 </li>
                                 <li>
@@ -66,8 +66,8 @@
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                                 stroke-width="2" d="m1 9 4-4-4-4" />
                                         </svg>
-                                        <a href="#"
-                                            class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Projects</a>
+                                        <a href="{{ route('users.index') }}"
+                                            class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Usuarios</a>
                                     </div>
                                 </li>
                                 <li aria-current="page">
@@ -78,23 +78,35 @@
                                                 stroke-width="2" d="m1 9 4-4-4-4" />
                                         </svg>
                                         <span
-                                            class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Flowbite</span>
+                                            class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Usuarios</span>
                                     </div>
                                 </li>
                             </ol>
                         </nav>
 
                     </div>
-                    <div class="px-4 pt-6">
+                    <div
+                        class="p-4 my-6 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 xl:p-8 dark:bg-gray-800">
                         <div class="flex flex-col w-full">
-                            <header class="shadow">
-                                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                                    {{ $header }}
-                                </div>
+                            <header>
+                                {{ $header ?? '' }}
                             </header>
                             <main>
                                 @if (session('status'))
-                                    <div class="status">{{ session('status') }}</div>
+                                    <div class="flex items-center p-4 mb-4 text-sm text-sky-500 border¡ rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
+                                        role="alert">
+                                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                                        </svg>
+                                        <span class="sr-only">Info</span>
+                                        <div>
+                                            <span class="font-medium">{{ session('status') }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="status"></div>
                                 @endif
                                 {{ $slot }}
                             </main>

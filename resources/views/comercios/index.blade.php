@@ -1,6 +1,6 @@
 {{-- @component('components.layout'); --}}
 
-<x-layouts.app title="Comercios" meta-description="meta descripción del Comercios">
+<x-layouts.app title="Comercios" header="Comercios" meta-description="meta descripción del Comercios">
     <h1>Comercios</h1>
 
     @foreach ($comercios as $comercio)
