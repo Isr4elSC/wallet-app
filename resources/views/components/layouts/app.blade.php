@@ -44,7 +44,7 @@
         <!-- Page Content -->
         <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
             <main>
-                <div>
+                <div class="class="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900"">
                     <div class="bg-white dark:bg-gray-800">
                         <nav class="flex" aria-label="Breadcrumb">
                             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -101,8 +101,8 @@
                         </div>
                     </div>
             </main>
+            <x-layouts.footer />
         </div>
-        <x-layouts.footer />
     </div>
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
