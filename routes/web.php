@@ -15,7 +15,7 @@ use Whoops\Run;
 //Ruta de inicio
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('inicio');
 
 
 //Rutas de la aplicacion
