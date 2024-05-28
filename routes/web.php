@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 //Rutas de la aplicacion
 Route::view('/inicio', 'inicio')->name('inicio');
+Route::view('/admin', 'admin')->name('admin');
 
 
 //Usuarios
@@ -31,12 +32,11 @@ Route::view('/inicio', 'inicio')->name('inicio');
 // route::delete('/users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 // Route::post('/users', [UserController::class, 'store'])->name('user.store');
 Route::resource('users', UserController::class)
-    ->names('users')
-    // ->parameters(['users' => 'user'])
-    // ->except('create', 'store', 'show')
-    // ->middleware('auth')
-    // ->middleware('can:manage-users')
-;
+    ->names('users');
+// ->parameters(['users' => 'user'])
+// ->except('create', 'store', 'show')
+// ->middleware('auth');
+// ->middleware('can:manage-users');
 
 //Monederos
 Route::get('/monederos', [MonederoController::class, 'index'])->name('monederos.index');
@@ -54,7 +54,6 @@ Route::delete('/transacciones/{transaccion}', [TransaccionController::class, 'de
 
 
 //Comercios
-// Route::get('transacciones/{$transaccion}', [TransaccionController::class, 'index'])->name('transacciones.index');
 // Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.index');
 // Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.show');
 // Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.edit');
@@ -62,8 +61,8 @@ Route::delete('/transacciones/{transaccion}', [TransaccionController::class, 'de
 // Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.destroy');
 Route::resource('comercios', ComercioController::class)
     ->names('comercios');
-// ->middleware('auth')
-// ->middleware('can:manage-comercios' );
+// ->middleware('auth');
+// ->middleware('can:manage-comercios');
 
 
 //ADMINISTRADOR

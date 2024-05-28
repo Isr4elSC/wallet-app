@@ -23,84 +23,22 @@ class RoleSeeder extends Seeder
         //Permissions
         Permission::create(
             [
-                'name' => 'admin.index',
+                'name' => 'admin',
                 'description' => 'Ver el dashboard'
             ]
-        )->syncRoles($admin, $cliente, $comercio);
+        )->syncRoles($admin);
 
-        //Categories
-        Permission::create(
-            [
-                'name' => 'categories.index',
-                'description' => 'Ver listado de categorias'
-            ]
-        )->syncRoles($admin, $cliente, $comercio);
-        Permission::create(
-            [
-                'name' => 'categories.create',
-                'description' => 'Crear categorias'
-            ]
-        )->assignRole($admin);
-        Permission::create(
-            [
-                'name' => 'categories.edit',
-                'description' => 'Editar categorias'
-            ]
-        )->assignRole($admin);
-        Permission::create(
-            [
-                'name' => 'categories.destroy',
-                'description' => 'Eliminar categorias'
-            ]
-        )->assignRole($admin);
-
-        //articles
-
-        Permission::create(
-            [
-                'name' => 'articles.index',
-                'description' => 'Ver listado de articulos'
-            ]
-        )->syncRoles($admin, $cliente, $comercio);
-        Permission::create(
-            [
-                'name' => 'articles.create',
-                'description' => 'Crear articulos'
-            ]
-        )->syncRoles($admin, $cliente, $comercio);
-        Permission::create(
-            [
-                'name' => 'articles.edit',
-                'description' => 'Editar articulos'
-            ]
-        )->syncRoles($admin, $cliente, $comercio);
-        Permission::create(
-            [
-                'name' => 'articles.destroy',
-                'description' => 'Eliminar articulos'
-            ]
-        )->syncRoles($admin, $cliente, $comercio);
-
-
-        //comentarios
-        Permission::create(
-            [
-                'name' => 'comments.index',
-                'description' => 'Ver listado de comentarios'
-            ]
-        )->syncRoles($admin, $cliente, $comercio);
-        Permission::create(
-            [
-                'name' => 'comments.destroy',
-                'description' => 'Eliminar comentarios'
-            ]
-        )->syncRoles($admin, $cliente, $comercio);
-
-        //users
+        //Users
         Permission::create(
             [
                 'name' => 'users.index',
                 'description' => 'Ver listado de usuarios'
+            ]
+        )->syncRoles($admin);
+        Permission::create(
+            [
+                'name' => 'users.create',
+                'description' => 'Crear usuarios'
             ]
         )->assignRole($admin);
         Permission::create(
@@ -113,6 +51,67 @@ class RoleSeeder extends Seeder
             [
                 'name' => 'users.destroy',
                 'description' => 'Eliminar usuarios'
+            ]
+        )->assignRole($admin);
+
+        //Comercios
+        Permission::create(
+            [
+                'name' => 'comercios.index',
+                'description' => 'Ver listado de comercios'
+            ]
+        )->syncRoles($admin, $cliente, $comercio);
+        Permission::create(
+            [
+                'name' => 'comercios.create',
+                'description' => 'Crear comercios'
+            ]
+        )->syncRoles($admin, $cliente, $comercio);
+        Permission::create(
+            [
+                'name' => 'comercios.edit',
+                'description' => 'Editar comercios'
+            ]
+        )->syncRoles($admin, $cliente, $comercio);
+        Permission::create(
+            [
+                'name' => 'comercios.destroy',
+                'description' => 'Eliminar comercios'
+            ]
+        )->syncRoles($admin, $cliente, $comercio);
+
+
+        //Monederos
+        Permission::create(
+            [
+                'name' => 'Monederos.index',
+                'description' => 'Ver listado de Monederos'
+            ]
+        )->syncRoles($admin, $cliente, $comercio);
+        Permission::create(
+            [
+                'name' => 'Monederos.destroy',
+                'description' => 'Eliminar Monederos'
+            ]
+        )->syncRoles($admin, $cliente, $comercio);
+
+        //transacciones
+        Permission::create(
+            [
+                'name' => 'transacciones.index',
+                'description' => 'Ver listado de transacciones'
+            ]
+        )->assignRole($admin);
+        Permission::create(
+            [
+                'name' => 'transacciones.edit',
+                'description' => 'Editar transacciones'
+            ]
+        )->assignRole($admin);
+        Permission::create(
+            [
+                'name' => 'transacciones.destroy',
+                'description' => 'Eliminar transacciones'
             ]
         )->assignRole($admin);
     }
