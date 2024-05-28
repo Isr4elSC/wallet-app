@@ -13,13 +13,13 @@ use Whoops\Run;
 
 
 //Ruta de inicio
-// Route::get('/', function () {
-//     return view('welcome');
-// })->name('inicio');
-Route::view('/', 'home')->name('inicio');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 //Rutas de la aplicacion
+// Route::view('/inicio', 'inicio')->name('inicio');
 Route::view('/admin', 'admin')->name('admin');
 
 
