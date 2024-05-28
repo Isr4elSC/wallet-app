@@ -9,7 +9,7 @@
 </nav> --}}
 <nav class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"">
     <div class="flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="{{ route('inicio') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="{{ route('admin') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <svg class="w-8 h-8 text-sky-500" fill="none" stroke-width="2" width="0" stroke="currentColor"
                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />

@@ -21,18 +21,18 @@ class Transaccion extends Model
         'concepto',
     ];
 
-    public function usuario()
+    public function user()
     {
-        return $this->belongsTo(Monedero::class)->belongsTo(User::class);
+        return $this->belongsTo(Monedero::class, 'id_user');
     }
 
     public function comercio()
     {
-        return $this->belongsTo(Comercio::class);
+        return $this->belongsTo(Comercio::class, 'id_comercio');
     }
 
     public function monedero()
     {
-        return $this->belongsTo(Monedero::class);
+        return $this->belongsTo(Monedero::class, 'id_monedero')->belongsTo(User::class);
     }
 }

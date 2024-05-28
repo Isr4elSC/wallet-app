@@ -10,9 +10,11 @@ class TransaccionController extends Controller
 {
     public function index()
     {
-        $transacciones = Transaccion::all();
-        return response()->json($transacciones);
+        $transacciones = Transaccion::all()->sortByDesc('fecha_transaccion');
+        // return response()->json($transacciones);
+        return view('transacciones.index', ['transacciones' => $transacciones]);
     }
+
 
     public function obtenerTransaccion($id)
     {
@@ -69,5 +71,26 @@ class TransaccionController extends Controller
             'monto' => 'required|numeric'
         ]);
         return response()->json($datos);
+    }
+
+
+    public function show($id)
+    {
+        $transaccion = Transaccion::find($id);
+        return view('transacciones.show', ['transaccion' => $transaccion]);
+    }
+
+    public function edit($id)
+    {
+        $transaccion = Transaccion::find($id);
+        return view('transacciones.edit', ['transaccion' => $transaccion]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $transaccion = Transaccion::find($id);
+        $transaccion->update($request->all());
+        return redirect()->route('transacciones.edit', $transaccion)
+            ->with('success-update', 'Transaccion actualizada correctamente');
     }
 }

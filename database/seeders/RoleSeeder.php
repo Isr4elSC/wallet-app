@@ -43,6 +43,24 @@ class RoleSeeder extends Seeder
         )->assignRole($admin);
         Permission::create(
             [
+                'name' => 'manage-users',
+                'description' => 'Administrar usuarios'
+            ]
+        )->assignRole($admin);
+        Permission::create(
+            [
+                'name' => 'manage-sorteos',
+                'description' => 'Administrar sorteos'
+            ]
+        )->assignRole($admin);
+        Permission::create(
+            [
+                'name' => 'manage-promociones',
+                'description' => 'Administrar promociones'
+            ]
+        )->assignRole($admin);
+        Permission::create(
+            [
                 'name' => 'users.edit',
                 'description' => 'Editar usuarios'
             ]
@@ -55,6 +73,12 @@ class RoleSeeder extends Seeder
         )->assignRole($admin);
 
         //Comercios
+        Permission::create(
+            [
+                'name' => 'manage-comercios',
+                'description' => 'Administrar comercios'
+            ]
+        )->assignRole($admin);
         Permission::create(
             [
                 'name' => 'comercios.index',
