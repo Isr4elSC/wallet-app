@@ -98,7 +98,6 @@
                                 <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889" />
                                 <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889" />
                             </svg>
-                            </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Sorteos</span>
                         </a>
                     </li>
@@ -135,7 +134,6 @@
                                 <path
                                     d="M4.893 4.893a1 1 0 0 1 1.32 -.083l.094 .083l1.4 1.4a1 1 0 0 1 -1.32 1.497l-.094 -.083l-1.4 -1.4a1 1 0 0 1 0 -1.414z"
                                     stroke-width="0" fill="currentColor" />
-                            </svg>
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Promociones</span>
                         </a>
