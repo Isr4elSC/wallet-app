@@ -20,7 +20,7 @@ class Comercio extends Model
         'telefono',
         'email',
         'logo',
-        'pagina_web',
+        'web',
         'calificacion',
         'saldo_disponible',
 
@@ -31,8 +31,14 @@ class Comercio extends Model
         return $this->hasMany(Transaccion::class);
     }
 
-    public function sorteos()
+
+    public function user()
     {
-        return $this->hasMany(Sorteo::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function Promocion()
+    {
+        return $this->hasMany(Promocion::class);
     }
 }

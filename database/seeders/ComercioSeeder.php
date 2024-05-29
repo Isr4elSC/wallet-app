@@ -14,6 +14,6 @@ class ComercioSeeder extends Seeder
     public function run(): void
     {
         //
-        Comercio::factory(5)->create();
+        Comercio::factory(10)->create();
     }
 }

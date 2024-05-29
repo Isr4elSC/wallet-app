@@ -1,25 +1,8 @@
-{{-- @extends('layouts.webapp')
-@section('title', 'Blog')
-@section('meta-description', 'Informacion del blog de la issan.dev - wallet')
-
-@section('content')
-<h1>Blog</h1>
-
-@endsection --}}
-
-<x-layouts.app header="Usuarios" title="Usuarios" meta-description="Listado de usuarios de la app">
-
-    {{-- @if (session('status'))
-        <div class="status">{{ session('status') }}</div>
-    @endif --}}
-    {{-- @session('status')
-        <div class="status">{{ $value }}</div>
-    @endsession --}}
+<x-layouts.app header="Monederos" title="Monederos" meta-description="Listado de monederos de la app">
     <div class="my-4 py-4">
         <a class="text-white my-9 bg-sky-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-            href="{{ route('users.create') }}">Crear usuario</a>
+            href="{{ route('monederos.create') }}">Crear Monedero</a>
     </div>
-    {{-- @dump($users) --}}
     <div class="flex flex-col">
         <div class="overflow-x-auto">
             <div class="inline-block min-w-full align-middle">
@@ -28,42 +11,41 @@
                         <thead class="bg-gray-100 dark:bg-gray-700">
                             <tr>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Nombre
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Cliente
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Email
-                                </th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Saldo
                                 </th>
+                                <th
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Email
+                                </th>
                                 <th colspan="3"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Acciones
                                 </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-600 dark:bg-gray-800">
-                            @foreach ($users as $user)
-                                {{-- @dump($usuario) --}}
+                            @foreach ($monederos as $monedero)
                                 <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $user->nombre }}
+                                        {{ $monedero->saldo }} €
                                     </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $user->email }}
+                                        {{ $monedero->user->nombre }}
                                     </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $user->monedero->saldo }}
+                                        {{ $monedero->user->email }}
                                     </td>
                                     <td class="py-4 space-x-0 text-center whitespace-nowrap">
                                         <a class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                            href="{{ route('users.show', $user) }}">
+                                            href="{{ route('monederos.show', $monedero) }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" width="18"
                                                 height="18" viewBox="0 0 24 24" stroke-width="2"
                                                 stroke="currentColor" fill="none" stroke-linecap="round"
@@ -77,7 +59,7 @@
                                     </td>
                                     <td class="py-4 space-x-0 text-center whitespace-nowrap">
                                         <a class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-sky-500 rounded-lg hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                            href="{{ route('users.edit', $user) }}"><svg class="w-4 h-4 mr-2"
+                                            href="{{ route('monederos.edit', $monedero) }}"><svg class="w-4 h-4 mr-2"
                                                 fill="currentColor" viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -90,7 +72,7 @@
                                     </td>
                                     {{-- <a href="{{ route('user.destroy', $user) }}">Eliminar</a> | --}}
                                     <td class="py-4 space-x-0 text-center whitespace-nowrap">
-                                        <form method="POST" action="{{ route('users.destroy', $user) }}">
+                                        <form method="POST" action="{{ route('monederos.destroy', $monedero) }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
@@ -111,8 +93,5 @@
             </div>
         </div>
     </div>
-    {{-- @dump($users) --}}
-    {{-- @dump($users->links()) --}}
-    {{-- {{ $users->onEachSide(5)->links() }} --}}
-    {{ $users->links() }}
+    {{-- {{ $monederos->links() }} --}}
 </x-layouts.app>

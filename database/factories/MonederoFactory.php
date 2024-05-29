@@ -17,7 +17,7 @@ class MonederoFactory extends Factory
      */
     public function definition(): array
     {
-        $valor = 50.00;
+        $valor = 100.00;
         return [
             //
             'user_id' => User::all()->random()->id,

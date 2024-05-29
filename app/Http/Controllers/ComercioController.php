@@ -14,22 +14,22 @@ class ComercioController extends Controller
     {
         $comercios = Comercio::simplePaginate(20);
         // return response()->json($comercios);
-        return view('comercios.index', ['comercios' => $comercios]);
+        return view('admin.comercios.index', ['comercios' => $comercios]);
     }
 
     public function show(Comercio $comercio)
     {
-        return view('comercios.show', ['comercio' => $comercio]);
+        return view('admin.comercios.show', ['comercio' => $comercio]);
     }
 
     public function create()
     {
-        return view('comercios.create', ['comercio' => new Comercio()]);
+        return view('admin.comercios.create', ['comercio' => new Comercio()]);
     }
 
     public function edit(Comercio $comercio)
     {
-        return view('comercios.edit', ['comercio' => $comercio]);
+        return view('admin.comercios.edit', ['comercio' => $comercio]);
     }
 
     public function update(Request $request, Comercio $comercio)

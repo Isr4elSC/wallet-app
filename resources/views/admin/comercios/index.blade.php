@@ -13,23 +13,23 @@
                         <thead class="bg-gray-100 dark:bg-gray-700">
                             <tr>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Comercio
                                 </th>
-                                <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {{-- <th
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Descripción
-                                </th>
+                                </th> --}}
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     web
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     saldo
                                 </th>
                                 <th colspan="3"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     acciones
                                 </th>
                             </tr>
@@ -41,11 +41,11 @@
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
                                         {{ $comercio->nombre_comercio }}
                                     </td>
-                                    <td
+                                    {{-- <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
                                         {{ $comercio->descripcion }}
 
-                                    </td>
+                                    </td> --}}
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
                                         {{ $comercio->pagina_web }}

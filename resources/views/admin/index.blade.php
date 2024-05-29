@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+{{-- @extends('adminlte::page')
 
 @section('title', 'Panel de Administración')
 
@@ -12,9 +12,15 @@
 
 @section('css')
     {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-@stop
+{{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+{{-- @stop
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-@stop
+@stop --}}
+
+
+<x-layouts.app title="Panel de administración" header="Panel de administración"
+    meta-description="Panel de administración de la app ISSC-Wallet">
+
+</x-layouts.app>

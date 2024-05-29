@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('telefono')->nullable();
             $table->string('email')->unique();
             $table->string('logo')->nullable();
-            $table->string('pagina_web')->nullable();
+            $table->string('web')->nullable();
             $table->decimal('calificacion', 10, 2)->nullable();
             $table->decimal('saldo_disponible', 10, 2)->default(0);
             $table->timestamps();

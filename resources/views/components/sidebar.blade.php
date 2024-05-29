@@ -1,13 +1,12 @@
 <aside id="sidebar"
     class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 hidden w-64 h-full pt-16 font-normal duration-75 lg:flex transition-width"
     aria-label="Sidebar">
-
     <div
         class="relative flex flex-col flex-1 min-h-0 pt-0 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
             <div class="flex-1 px-3 space-y-1 bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                 <ul class="pb-2 space-y-2">
-                    <li>
+                    {{-- <li>
                         <form action="#" method="GET" class="lg:hidden">
                             <label for="mobile-search" class="sr-only">Search</label>
                             <div class="relative">
@@ -24,7 +23,7 @@
                                     placeholder="Search">
                             </div>
                         </form>
-                    </li>
+                    </li> --}}
                     <li>
                     <li>
                         <a href="{{ route('users.index') }}"
@@ -105,10 +104,9 @@
                         <a href="{{ route('promociones.index') }}"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="icon icon-tabler icon-tabler-credit-card-pay" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
+                                xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-credit-card-pay"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M12 8a4 4 0 1 1 -3.995 4.2l-.005 -.2l.005 -.2a4 4 0 0 1 3.995 -3.8z"
                                     stroke-width="0" fill="currentColor" />
@@ -139,7 +137,7 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="py-2 space-y-2">
+                {{-- <ul class="py-2 space-y-2">
                     <li>
                         <button type="button"
                             class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
@@ -331,8 +329,8 @@
                             </li>
                         </ul>
                     </li>
-                </ul>
-                <div class="pt-2 space-y-2">
+                </ul> --}}
+                {{-- <div class="pt-2 space-y-2">
                     <a href="https://github.com/themesberg/flowbite-admin-dashboard" target="_blank"
                         class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
                         <svg aria-hidden="true"
@@ -375,10 +373,10 @@
                         </svg>
                         <span class="ml-3" sidebar-toggle-item="">Support</span>
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 justify-center hidden w-full p-4 space-x-4 bg-white lg:flex dark:bg-gray-800"
+        {{-- <div class="absolute bottom-0 left-0 justify-center hidden w-full p-4 space-x-4 bg-white lg:flex dark:bg-gray-800"
             sidebar-bottom-menu="">
             <a href="#"
                 class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
@@ -527,8 +525,8 @@
                         </a>
                     </li>
                 </ul>
-            </div>
-        </div>
+            </div> 
+        </div> --}}
     </div>
 </aside>
 <div class="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/90" id="sidebarBackdrop"></div>

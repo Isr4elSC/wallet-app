@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Monedero;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
@@ -10,6 +11,7 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
     //
+
     public function index()
     {
         // $users = User::simplePaginate(10);
@@ -19,7 +21,7 @@ class UserController extends Controller
         // return view('admin.users.index', compact('users'));
         // return view('users.index', compact('users'));
 
-        return view('users.index', ['users' => $users]);
+        return view('admin.users.index', ['users' => $users]);
     }
 
     public function show(User $user)
@@ -28,12 +30,12 @@ class UserController extends Controller
         // return $user;
         // return User::findOrFail($user);
 
-        return view('users.show', ['user' => $user]);
+        return view('admin.users.show', ['user' => $user]);
     }
 
     public function create()
     {
-        return view('users.create', ['user' => new User()]);
+        return view('admin.users.create', ['user' => new User()]);
     }
 
     public function edit(User $user)
@@ -41,7 +43,7 @@ class UserController extends Controller
         // //recuperar el listado de roles
         // $roles = Role::all();
         // return view('admin.users.edit', compact('user', 'roles'));
-        return view('users.edit', ['user' => $user]);
+        return view('admin.users.edit', ['user' => $user]);
     }
 
     public function update(Request $request, User $user)
@@ -106,7 +108,6 @@ class UserController extends Controller
 
         User::create($validated);
         // return redirect()->route('users.index')->with('success-store', 'Usuario creado correctamente');
-
         // session()->flash('status', 'Usuario creado correctamente');
         return to_route('users.index')->with('status', 'Usuario creado correctamente');
     }

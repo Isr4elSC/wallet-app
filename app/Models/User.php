@@ -22,10 +22,9 @@ class User extends Authenticatable
         'nombre',
         'email',
         'password',
-        // 'fecha_nacimiento',
-        // 'telefono',
-        // 'direccion',
-        // 'saldo_monedero',
+        'fecha_nacimiento',
+        'telefono',
+        'direccion',
         // 'foto_perfil'
     ];
 
@@ -71,5 +70,10 @@ class User extends Authenticatable
     public function monedero()
     {
         return $this->hasOne(Monedero::class)->withDefault('saldo', 0);
+    }
+
+    public function transacciones()
+    {
+        return $this->hasMany(Transaccion::class);
     }
 }

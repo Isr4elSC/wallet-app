@@ -26,9 +26,9 @@ class ComercioFactory extends Factory
             'telefono' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'logo' => $this->faker->imageUrl(),
-            'pagina_web' => $this->faker->url(),
+            'web' => $this->faker->url(),
             'calificacion' => $this->faker->randomFloat(2, 0, 10),
-            'saldo_disponible' => $this->faker->randomFloat(2, 0, 1000),
+            'saldo_disponible' => 0,
         ];
     }
 }

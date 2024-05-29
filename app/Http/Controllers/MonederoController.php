@@ -15,13 +15,19 @@ class MonederoController extends Controller
     {
         $monederos = Monedero::all();
         // return response()->json($monederos);
-        return view('monedero', compact('monederos'));
+        return view('admin.monederos.index', ['monederos' => $monederos]);
     }
 
     public function obtenerSaldo($id)
     {
-        $monedero = Monedero::where('id_usuario', $id)->first();
+        $monedero = Monedero::where('user_id', $id)->first();
         return response()->json($monedero);
+    }
+
+    public function monederoUser($user_id)
+    {
+        $monederos = Monedero::where('user_id', $user_id)->get();
+        return view('monedero.index', ['monederos' => $monederos]);
     }
 
     public function ActualizarSaldo(Request $request)
@@ -66,5 +72,34 @@ class MonederoController extends Controller
         $monedero->save();
 
         return response()->json($monedero);
+    }
+
+    public function create()
+    {
+        return view('admin.monederos.create');
+    }
+
+    public function store(Request $request)
+    {
+        $datos = $request->validate([
+            'id_usuario' => 'required|integer',
+            'saldo' => 'required|numeric'
+        ]);
+
+        $monedero = Monedero::create($datos);
+
+        return redirect()->route('monederos.index')->with('status', 'Monedero creado con éxito');
+    }
+
+    public function show($id)
+    {
+        $monedero = Monedero::find($id);
+        return view('admin.monederos.show', ['monedero' => $monedero]);
+    }
+
+    public function edit($id)
+    {
+        $monedero = Monedero::find($id);
+        return redirect()->route('monederos.show', $monedero)->with('status', 'Monedero actualizado con éxito');
     }
 }

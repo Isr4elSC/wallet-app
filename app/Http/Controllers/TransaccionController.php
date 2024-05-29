@@ -12,7 +12,7 @@ class TransaccionController extends Controller
     {
         $transacciones = Transaccion::all()->sortByDesc('fecha_transaccion');
         // return response()->json($transacciones);
-        return view('transacciones.index', ['transacciones' => $transacciones]);
+        return view('admin.transacciones.index', ['transacciones' => $transacciones]);
     }
 
 
@@ -77,20 +77,20 @@ class TransaccionController extends Controller
     public function show($id)
     {
         $transaccion = Transaccion::find($id);
-        return view('transacciones.show', ['transaccion' => $transaccion]);
+        return view('admin.transacciones.show', ['transaccion' => $transaccion]);
     }
 
     public function edit($id)
     {
         $transaccion = Transaccion::find($id);
-        return view('transacciones.edit', ['transaccion' => $transaccion]);
+        return view('admin.transacciones.edit', ['transaccion' => $transaccion]);
     }
 
     public function update(Request $request, $id)
     {
         $transaccion = Transaccion::find($id);
         $transaccion->update($request->all());
-        return redirect()->route('transacciones.edit', $transaccion)
+        return redirect()->route('admin.transacciones.edit', $transaccion)
             ->with('success-update', 'Transaccion actualizada correctamente');
     }
 }

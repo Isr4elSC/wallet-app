@@ -21,14 +21,27 @@ class UserSeeder extends Seeder
             'nombre' => 'administrador',
             'email' => 'admin@issc.es',
             'password' => Hash::make('12345678'),
-        ])->assignRole('Administrador');
+        ])->assignRole('Administrador', 'Cliente', 'Comercio');
 
         User::factory()->create([
             'nombre' => 'Juan Perez',
             'email' => 'juan@gmail.com',
             'password' => Hash::make('12345678'),
-        ])->assignRole('Comercio');
+        ])
+            ->assignRole('Cliente', 'Comercio')
+            ->monedero()->create([
+                'saldo' => 100,
+            ]);
 
-        User::factory(12)->create();
+        User::factory(12)->create()
+            ->each(function ($user) {
+                $user->assignRole('Cliente');
+                $user->monedero()->create([
+                    'saldo' => 100,
+                ]);
+            });
+
+        // User::factory(12)->create();
+
     }
 }
