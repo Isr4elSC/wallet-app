@@ -1,20 +1,4 @@
-{{-- @extends('layouts.webapp')
-@section('title', 'Blog')
-@section('meta-description', 'Informacion del blog de la issan.dev - wallet')
-
-@section('content')
-<h1>Blog</h1>
-
-@endsection --}}
-
 <x-layouts.app header="Usuarios" title="Usuarios" meta-description="Listado de usuarios de la app">
-
-    {{-- @if (session('status'))
-        <div class="status">{{ session('status') }}</div>
-    @endif --}}
-    {{-- @session('status')
-        <div class="status">{{ $value }}</div>
-    @endsession --}}
     <div class="my-4 py-4">
         <a class="text-white my-9 bg-sky-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
             href="{{ route('users.create') }}">Crear usuario</a>
@@ -37,7 +21,11 @@
                                 </th>
                                 {{-- <th
                                     class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Saldo
+                                    Monedero
+                                </th>
+                                <th
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Comercio
                                 </th> --}}
                                 <th colspan="3"
                                     class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -59,7 +47,21 @@
                                     </td>
                                     {{-- <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        @if ($user->monedero == null)
+                                            {{ __('NO') }}
+                                        @else
+                                            {{ __('SÍ') }}
+                                        @endif
                                         {{ $user->monedero->saldo }}
+                                    </td>
+                                    <td
+                                        class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        @if ($user->comercio)
+                                            {{ __('NO') }}
+                                        @else
+                                            {{ __('SÍ') }}
+                                        @endif
+                                        {{ $user->comercio->nombre_comercio }}
                                     </td> --}}
                                     <td class="py-4 space-x-0 text-center whitespace-nowrap">
                                         <a class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
