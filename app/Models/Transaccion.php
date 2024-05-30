@@ -16,15 +16,15 @@ class Transaccion extends Model
         'id_comercio',
         'fecha_transaccion',
         'cantidad',
+        'concepto',
         'tipo_transaccion',
         'estado',
-        'concepto',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(Monedero::class, 'id_user');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(Monedero::class, 'id_monedero')->belongsTo(User::class, 'id_usuario');
+    // }
 
     public function comercio()
     {
@@ -33,6 +33,6 @@ class Transaccion extends Model
 
     public function monedero()
     {
-        return $this->belongsTo(Monedero::class, 'id_monedero')->belongsTo(User::class);
+        return $this->belongsTo(Monedero::class, 'id_monedero');
     }
 }

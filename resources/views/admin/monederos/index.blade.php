@@ -33,11 +33,11 @@
                                 <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $monedero->saldo }} €
+                                        {{ $monedero->user->nombre }}
                                     </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $monedero->user->nombre }}
+                                        {{ $monedero->saldo }} €
                                     </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">

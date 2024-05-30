@@ -12,6 +12,13 @@ class UserController extends Controller
 {
     //
 
+    public function selectList()
+    {
+        $users = User::all();
+
+        return $users;
+    }
+
     public function index()
     {
         // $users = User::simplePaginate(10);

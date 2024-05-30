@@ -46,6 +46,7 @@ Route::get('/admin/monederos/{monedero}', [MonederoController::class, 'show'])->
 Route::get('/admin/monederos/{monedero}/edit', [MonederoController::class, 'edit'])->name('monederos.edit')->middleware('auth')->middleware('can:manage-monederos');
 Route::patch('/admin/monederos/{monedero}', [MonederoController::class, 'update'])->name('monederos.update')->middleware('auth')->middleware('can:manage-monederos');
 route::delete('/admin/monederos/{monedero}', [MonederoController::class, 'destroy'])->name('monederos.destroy')->middleware('auth')->middleware('can:manage-monederos');
+Route::post('/admin/monederos/', [MonederoController::class, 'store'])->name('monederos.store')->middleware('auth')->middleware('can:manage-monederos');
 
 Route::get('/user/monedero/{user}', [MonederoController::class, 'monederoUser'])->name('monedero.user')->middleware('auth');
 Route::get('/user/comercios/{user}', [ComercioController::class, 'comerciosUser'])->name('comercio.user')->middleware('auth');

@@ -29,11 +29,11 @@
                             <tr>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Nº
+                                    Fecha
                                 </th>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Fecha
+                                    Nº
                                 </th>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -46,6 +46,10 @@
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Cantidad
+                                </th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Concepto
                                 </th>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -67,20 +71,20 @@
                                 <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        {{ date('d-m-Y', strtotime($transaccion->fecha_transaccion)) }}
+                                    </td>
+                                    <td
+                                        class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
                                         {{ $transaccion->id }}
                                     </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $transaccion->created_at }}
-                                    </td>
-                                    <td
-                                        class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
                                         {{-- {{ $transaccion->user()->nombre }} --}}
-                                        {{ $transaccion->id_monedero }}
+                                        {{ $transaccion->monedero->user->nombre }}
                                     </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $transaccion->id_comercio }}
+                                        {{ $transaccion->comercio->nombre_comercio }}
                                     </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
@@ -88,11 +92,15 @@
                                     </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $transaccion->estado }}
+                                        {{ $transaccion->concepto }}
                                     </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $transaccion->tipo }}
+                                        {{ $transaccion->tipo_transaccion }}
+                                    </td>
+                                    <td
+                                        class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        {{ $transaccion->estado }}
                                     </td>
                                     <td class="py-4 space-x-0 text-center whitespace-nowrap">
                                         <a class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -121,7 +129,6 @@
                                                     clip-rule="evenodd"></path>
                                             </svg> Editar</a>
                                     </td>
-                                    {{-- <a href="{{ route('user.destroy', $user) }}">Eliminar</a> | --}}
                                     <td class="py-4 space-x-0 text-center whitespace-nowrap">
                                         <form method="POST"
                                             action="{{ route('transacciones.destroy', $transaccion) }}">

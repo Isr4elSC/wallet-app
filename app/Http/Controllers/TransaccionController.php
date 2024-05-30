@@ -20,7 +20,7 @@ class TransaccionController extends Controller
     {
         $transaccion = Transaccion::find($id);
         $informacionTransaccion = [
-            'fecha' => $transaccion->fecha_transaccion->format('d/m/Y H:i'),
+            'fecha' => $transaccion->fecha_transaccion,
             'monto' => $transaccion->monto,
             'tipo' => $transaccion->tipo_transaccion,
             'descripcion' => $transaccion->descripcion,
@@ -90,7 +90,14 @@ class TransaccionController extends Controller
     {
         $transaccion = Transaccion::find($id);
         $transaccion->update($request->all());
-        return redirect()->route('admin.transacciones.edit', $transaccion)
+        return redirect()->route('transacciones.edit', $transaccion)
             ->with('success-update', 'Transaccion actualizada correctamente');
+    }
+
+    public function destroy(Transaccion $transaccion)
+    {
+        $transaccion->delete();
+        return to_route('transacciones.index')
+            ->with('success-delete', 'Transaccion eliminada correctamente');
     }
 }

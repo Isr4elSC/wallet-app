@@ -22,6 +22,6 @@ class Promocion extends Model
 
     public function comercio()
     {
-        return $this->belongsTo(Comercio::class);
+        return $this->belongsTo(Comercio::class, 'id_comercio');
     }
 }
