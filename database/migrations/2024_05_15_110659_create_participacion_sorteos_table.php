@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('participacion_sorteos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_usuario')->unsigned()->index();
-            $table->bigInteger('id_sorteo')->unsigned()->index();
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->bigInteger('sorteo_id')->unsigned()->index();
             $table->dateTime('fecha_participacion');
             $table->timestamps();
         });

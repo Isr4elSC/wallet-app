@@ -1,14 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MonederoController;
 use App\Http\Controllers\ComercioController;
 use App\Http\Controllers\TransaccionController;
-use App\Models\Transaccion;
+use App\Http\Controllers\SorteoController;
+use App\Http\Controllers\PromocionController;
 use Illuminate\Support\Facades\Route;
-use Whoops\Run;
 
 
 
@@ -19,12 +18,13 @@ Route::get('/', function () {
 })->name('inicio');
 
 
-//Rutas de la aplicacion
+//ADMINISTRACION
+
 // Route::view('/inicio', 'inicio')->name('inicio');
 Route::view('/admin', 'admin.index')->name('admin')->middleware('auth')->middleware('can:admin');
 
 
-//Usuarios
+//Rutas para la administracion de Usuarios
 // Route::get('/users', [UserController::class, 'index'])->name('users.index');
 // Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
 // Route::get('/users/{user}', [UserController::class, 'show'])->name('user.show');
@@ -39,7 +39,7 @@ Route::resource('/admin/users', UserController::class)
     ->middleware('auth')
     ->middleware('can:manage-users');
 
-//Monederos
+//Rutas para la administración de Monederos
 Route::get('/admin/monederos', [MonederoController::class, 'index'])->name('monederos.index')->middleware('auth')->middleware('can:manage-monederos');
 Route::get('/admin/monederos/create', [MonederoController::class, 'create'])->name('monederos.create')->middleware('auth')->middleware('can:manage-monederos');
 Route::get('/admin/monederos/{monedero}', [MonederoController::class, 'show'])->name('monederos.show')->middleware('auth')->middleware('can:manage-monederos');
@@ -48,11 +48,7 @@ Route::patch('/admin/monederos/{monedero}', [MonederoController::class, 'update'
 route::delete('/admin/monederos/{monedero}', [MonederoController::class, 'destroy'])->name('monederos.destroy')->middleware('auth')->middleware('can:manage-monederos');
 Route::post('/admin/monederos/', [MonederoController::class, 'store'])->name('monederos.store')->middleware('auth')->middleware('can:manage-monederos');
 
-Route::get('/user/monedero/{user}', [MonederoController::class, 'monederoUser'])->name('monedero.user')->middleware('auth');
-Route::get('/user/comercios/{user}', [ComercioController::class, 'comerciosUser'])->name('comercio.user')->middleware('auth');
-Route::get('/user/transaccion/create', [TransaccionController::class, 'create'])->name('transaccion.create')->middleware('auth')->middleware('can:crear-transacciones');
-
-//Transacciones
+//Administración de Transacciones
 Route::get('/admin/transacciones', [TransaccionController::class, 'index'])->name('transacciones.index')->middleware('auth')->middleware('can:manage-transacciones');
 Route::get('/admin/transacciones/create', [TransaccionController::class, 'create'])->name('transacciones.create')->middleware('auth')->middleware('can:manage-transacciones');
 Route::get('/admin/transacciones/{transaccion}', [TransaccionController::class, 'show'])->name('transacciones.show')->middleware('auth')->middleware('can:manage-transacciones');
@@ -61,31 +57,41 @@ Route::patch('/admin/transacciones/{transaccion}', [TransaccionController::class
 Route::delete('/admin/transacciones/{transaccion}', [TransaccionController::class, 'destroy'])->name('transacciones.destroy')->middleware('auth')->middleware('can:manage-transacciones');
 
 
-//Comercios
+// Administración de Comercios
 // Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.index');
 // Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.show');
 // Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.edit');
 // Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.update');
 // Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.destroy');
 
-//ADMINISTRADOR
 // Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
+//Rutas para la administración de Comercios
 Route::resource('/admin/comercios', ComercioController::class)
     ->names('comercios')
     ->middleware('auth')
     ->middleware('can:manage-comercios');
 
-Route::resource('/admin/sorteos', ComercioController::class)
+//Rutas para la administración de Sorteos
+Route::resource('/admin/sorteos', SorteoController::class)
     ->names('sorteos')
     ->middleware('auth')
     ->middleware('can:manage-sorteos');
 
-Route::resource('/admin/promociones', ComercioController::class)
+//Rutas para la administración de Promociones
+Route::resource('/admin/promociones', PromocionController::class)
     ->names('promociones')
     ->middleware('auth')
     ->middleware('can:manage-promociones');
 
+//Rutas para visualizar el monedero del usuario
+Route::get('/user/monedero', [MonederoController::class, 'show'])->name('monedero.user')->middleware('auth')->middleware('can:ver-monedero');
+
+//Rutas para visualizar las transacciones del usuario
+Route::get('/user/transacciones', [TransaccionController::class, 'index'])->name('transacciones.user')->middleware('auth')->middleware('can:ver-transacciones');
+
+//Rutas para visualizar los comercios del usuario
+Route::get('/user/comercio', [ComercioController::class, 'index'])->name('comercio.user')->middleware('auth')->middleware('can:ver-comercios');
 
 //Rutas de autenticacion
 Route::get('/dashboard', function () {

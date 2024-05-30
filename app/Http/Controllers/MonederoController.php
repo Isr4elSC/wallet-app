@@ -82,7 +82,7 @@ class MonederoController extends Controller
     public function store(Request $request)
     {
         $datos = $request->validate([
-            'id_usuario' => 'required|integer',
+            'id_user' => 'required|integer',
             'saldo' => 'required|numeric'
         ]);
 

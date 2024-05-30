@@ -12,12 +12,12 @@ class UserController extends Controller
 {
     //
 
-    public function selectList()
-    {
-        $users = User::all();
+    // public function selectList()
+    // {
+    //     $users = User::all();
 
-        return $users;
-    }
+    //     return $users;
+    // }
 
     public function index()
     {

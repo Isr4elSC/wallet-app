@@ -104,6 +104,7 @@
                                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">
                                     {{ Auth::user()->nombre }}</div>
                                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                                {{ Auth::user()->comercio }}
                             </div>
 
                             <div class="ms-1">
@@ -183,12 +184,15 @@
             </div>
 
             <div class="mt-3 space-y-1">
+
                 @if (Auth::user()->hasRole('Cliente'))
+                    {{-- && isset(Auth::user()->monedero) --}}
                     <x-responsive-nav-link :href="route('monedero.user', Auth::user())">
                         {{ __('Monedero') }}
                     </x-responsive-nav-link>
                 @endif
                 @if (Auth::user()->hasRole('Comercio'))
+                    {{-- && isset(Auth::user()->comercio) --}}
                     <x-responsive-nav-link :href="route('comercio.user', Auth::user())">
                         {{ __('Panel Comercio') }}
                     </x-responsive-nav-link>
@@ -198,9 +202,11 @@
                         {{ __('Panel de Administración') }}
                     </x-responsive-nav-link>
                 @endif
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Editar Perfil') }}
-                </x-responsive-nav-link>
+                @if (Auth::user()->hasRole('Administrador'))
+                    <x-responsive-nav-link :href="route('profile.edit')">
+                        {{ __('Editar Perfil') }}
+                    </x-responsive-nav-link>
+                @endif
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

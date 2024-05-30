@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('transacciones', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_monedero')->unsigned()->index();
-            $table->bigInteger('id_comercio')->unsigned()->index();
+            $table->bigInteger('monedero_id')->unsigned()->index();
+            $table->bigInteger('comercio_id')->unsigned()->index();
 
             $table->dateTime('fecha_transaccion');
             $table->decimal('cantidad', 10, 2);
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->enum('estado', ['Pendiente', 'Realizada', 'Cancelada'])->default('Pendiente');
             $table->timestamps();
 
-            $table->foreign('id_monedero')->references('id')->on('monederos')->onDelete('cascade');
-            $table->foreign('id_comercio')->references('id')->on('comercios')->onDelete('cascade');
+            $table->foreign('monedero_id')->references('id')->on('monederos')->onDelete('cascade');
+            $table->foreign('comercio_id')->references('id')->on('comercios')->onDelete('cascade');
         });
     }
 

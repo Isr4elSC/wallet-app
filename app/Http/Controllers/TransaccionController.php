@@ -16,80 +16,33 @@ class TransaccionController extends Controller
     }
 
 
-    public function obtenerTransaccion($id)
+    public function show(Transaccion $transaccion)
     {
-        $transaccion = Transaccion::find($id);
-        $informacionTransaccion = [
-            'fecha' => $transaccion->fecha_transaccion,
-            'monto' => $transaccion->monto,
-            'tipo' => $transaccion->tipo_transaccion,
-            'descripcion' => $transaccion->descripcion,
-            'comercio' => $transaccion->comercio->nombre_comercio ?? 'N/A' // Opcional
-        ];
-        return response()->json($informacionTransaccion);
-    }
-
-    public function realizarCompra(Request $request)
-    {
-
-        /*Valida los datos de la compra (monto, id_comercio).
-            Si el saldo es suficiente, resta el monto de la compra y actualiza el saldo.
-            Registra una transacción de tipo "Compra" en la base de datos.
-            Redirecciona al usuario con un mensaje de éxito o error.*/
-
-        $datos = $request->validate([
-            'id_usuario' => 'required|integer',
-            'id_comercio' => 'required|integer',
-            'monto' => 'required|numeric'
-        ]);
-        return response()->json($datos);
-    }
-
-    public function realizarDeposito(Request $request)
-    {
-        /*Valida los datos del depósito (monto).
-            Suma el monto al saldo del monedero.
-            Registra una transacción de tipo "Depósito" en la base de datos.
-            Redirecciona al usuario con un mensaje de éxito o error.*/
-
-        $datos = $request->validate([
-            'id_usuario' => 'required|integer',
-            'monto' => 'required|numeric'
-        ]);
-        return response()->json($datos);
-    }
-
-    public function procesarPremio(Request $request)
-    {
-        /*Valida los datos del premio (monto).
-            Suma el monto al saldo del monedero.
-            Registra una transacción de tipo "Premio" en la base de datos.
-            Redirecciona al usuario con un mensaje de éxito o error.*/
-
-        $datos = $request->validate([
-            'id_usuario' => 'required|integer',
-            'monto' => 'required|numeric'
-        ]);
-        return response()->json($datos);
-    }
-
-
-    public function show($id)
-    {
-        $transaccion = Transaccion::find($id);
         return view('admin.transacciones.show', ['transaccion' => $transaccion]);
     }
 
-    public function edit($id)
+    public function create()
     {
-        $transaccion = Transaccion::find($id);
+        return view('admin.transacciones.create', ['transaccion' => new Transaccion()]);
+    }
+
+    public function edit(Transaccion $transaccion)
+    {
         return view('admin.transacciones.edit', ['transaccion' => $transaccion]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Transaccion $transaccion)
     {
-        $transaccion = Transaccion::find($id);
-        $transaccion->update($request->all());
+        $validated = $request->validate([
+            'fecha_transaccion' => 'required|date',
+            'id_usuario' => 'required|integer',
+            'id_comercio' => 'required|integer',
+            'cantidad' => 'required|numeric',
+            'tipo_transaccion' => 'required|string',
+            'estado' => 'required|string', // 'Pendiente', 'Aprobado', 'Rechazado
+            'descripcion' => 'required|string',
+        ]);
+        $transaccion->update($validated);
         return redirect()->route('transacciones.edit', $transaccion)
             ->with('success-update', 'Transaccion actualizada correctamente');
     }
@@ -100,4 +53,78 @@ class TransaccionController extends Controller
         return to_route('transacciones.index')
             ->with('success-delete', 'Transaccion eliminada correctamente');
     }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'fecha_transaccion' => 'required|date',
+            'id_usuario' => 'required|integer',
+            'id_comercio' => 'required|integer',
+            'cantidad' => 'required|numeric',
+            'tipo_transaccion' => 'required|string',
+            'estado' => 'required|string', // 'Pendiente', 'Aprobado', 'Rechazado
+            'descripcion' => 'required|string',
+        ]);
+
+        Transaccion::create($validated);
+        return to_route('admin.transacciones.index')->with('success-create', 'Transaccion creada correctamente');
+    }
+
+    // public function obtenerTransaccion($id)
+    // {
+    //     $transaccion = Transaccion::find($id);
+    //     $informacionTransaccion = [
+    //         'fecha' => $transaccion->fecha_transaccion,
+    //         'monto' => $transaccion->monto,
+    //         'tipo' => $transaccion->tipo_transaccion,
+    //         'descripcion' => $transaccion->descripcion,
+    //         'comercio' => $transaccion->comercio->nombre_comercio ?? 'N/A' // Opcional
+    //     ];
+    //     return response()->json($informacionTransaccion);
+    // }
+
+    // public function realizarCompra(Request $request)
+    // {
+
+    //     /*Valida los datos de la compra (monto, id_comercio).
+    //         Si el saldo es suficiente, resta el monto de la compra y actualiza el saldo.
+    //         Registra una transacción de tipo "Compra" en la base de datos.
+    //         Redirecciona al usuario con un mensaje de éxito o error.*/
+
+    //     $datos = $request->validate([
+    //         'id_usuario' => 'required|integer',
+    //         'id_comercio' => 'required|integer',
+    //         'monto' => 'required|numeric'
+    //     ]);
+    //     return response()->json($datos);
+    // }
+
+    // public function realizarDeposito(Request $request)
+    // {
+    //     /*Valida los datos del depósito (monto).
+    //         Suma el monto al saldo del monedero.
+    //         Registra una transacción de tipo "Depósito" en la base de datos.
+    //         Redirecciona al usuario con un mensaje de éxito o error.*/
+
+    //     $datos = $request->validate([
+    //         'id_usuario' => 'required|integer',
+    //         'monto' => 'required|numeric'
+    //     ]);
+    //     return response()->json($datos);
+    // }
+
+    // public function procesarPremio(Request $request)
+    // {
+    //     /*Valida los datos del premio (monto).
+    //         Suma el monto al saldo del monedero.
+    //         Registra una transacción de tipo "Premio" en la base de datos.
+    //         Redirecciona al usuario con un mensaje de éxito o error.*/
+
+    //     $datos = $request->validate([
+    //         'id_usuario' => 'required|integer',
+    //         'monto' => 'required|numeric'
+    //     ]);
+    //     return response()->json($datos);
+    // }
+
 }
