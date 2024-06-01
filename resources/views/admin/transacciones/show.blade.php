@@ -62,7 +62,6 @@
                                 {{ $transaccion->created_at }} -
                                 Fecha de actualización: {{ $transaccion->updated_at }}</p>
                         </div>
-
                     </main>
                 </div>
             </div>

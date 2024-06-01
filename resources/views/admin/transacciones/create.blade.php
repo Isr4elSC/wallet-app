@@ -22,4 +22,10 @@
                                 {{ 'Crear transaccion' }}
                             </x-primary-button>
                         </form>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <x-footer />
+    </div>
 </x-layouts.app>

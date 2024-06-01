@@ -109,12 +109,12 @@
             <div class="mt-3 space-y-1">
                 @if (Auth::user()->hasRole('Cliente'))
                     <x-responsive-nav-link :href="route('monedero.index')">
-                        {{ __('Monedero') }}
+                        {{ __('Mi Monedero') }}
                     </x-responsive-nav-link>
                 @endif
                 @if (Auth::user()->hasRole('Comercio'))
                     <x-responsive-nav-link :href="route('comercios.index')">
-                        {{ __('Panel Comercio') }}
+                        {{ __('Mi Comercio') }}
                     </x-responsive-nav-link>
                 @endif
                 @if (Auth::user()->hasRole('Administrador'))

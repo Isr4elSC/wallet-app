@@ -20,56 +20,55 @@ class UserController extends Controller
     //     return $users;
     // }
 
+    // función para mostrar el listado de usuarios
     public function index()
     {
-        // $users = User::simplePaginate(10);
-        // $users = User::get();
+        // recuperamos el listado de usuarios paginados de 20 en 20
         $users = User::simplePaginate(20);
-
-        // return view('admin.users.index', compact('users'));
-        // return view('users.index', compact('users'));
-
+        // redirigimos a la vista de listado de usuarios
         return view('admin.users.index', ['users' => $users]);
     }
 
+    // función para mostrar los datos de un usuario
     public function show(User $user)
     {
         // return view('admin.users.show', compact('user'));
         // return $user;
         // return User::findOrFail($user);
 
+        // redirigimos a la vista de detalle del usuario
         return view('admin.users.show', ['user' => $user]);
     }
 
+    // función para crear un nuevo usuario
     public function create()
     {
         return view('admin.users.create', ['user' => new User()]);
     }
 
+    // función para dirigir a la vista para editar un usuario existente
     public function edit(User $user)
     {
         // //recuperar el listado de roles
         // $roles = Role::all();
         // return view('admin.users.edit', compact('user', 'roles'));
+
+        // redirigimos a la vista de edición del usuario
         return view('admin.users.edit', ['user' => $user]);
     }
 
+    // función para actualizar un usuario
     public function update(Request $request, User $user)
     {
-        //Llanar la tabla de intermedia
-        // $user->roles()->sync($request->role);
-        // return redirect()->route('users.edit', $user)
-        //     ->with('success-update', 'Rol establecido correctamente');
+        //validamos los datos de la petición
         $validated = $request->validate([
             'nombre' => 'required',
             'email' => 'required|email',
-            // 'password' => 'required|confirmed', Rules\Password::defaults(),
         ]);
+
         // $user->update($request->all());
         // $user->update($request->only('nombre', 'email'));
         // $user->password = bcrypt($request->password);
-
-
         // $user->nombre = $request->nombre;
         // $user->email = $request->email;
         // $user->save();
@@ -78,8 +77,11 @@ class UserController extends Controller
         //     'nombre' => $request->nombre,
         //     'email' => $request->email,
         // ]);
-        // return var_dump(isset($request->cliente), isset($request->comercio), isset($request->admin));
+
+        // actualizamos los datos del usuario
         $user->update($validated);
+
+        //asignamos el rol al usuario
         if (isset($request->cliente)) {
             $user->assignRole('Cliente');
         } else {
@@ -95,13 +97,13 @@ class UserController extends Controller
         } else {
             $user->removeRole('Administrador');
         }
-
         // session()->flash('status', 'Usuario actualizado correctamente');
         // return to_route('user.show', $user);
-
+        //redirigimos a la vista detalle del usuario
         return redirect()->route('users.show', $user)->with('status', 'Usuario actualizado correctamente');
     }
 
+    // función para borrar un usuario
     public function destroy(User $user)
     {
         $user->delete();
@@ -112,25 +114,24 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+
+        //validamos los datos de la petición
         $validated = $request->validate([
             'nombre' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed', Rules\Password::defaults(),
         ]);
-        // $user = new User();
-        // $user->nombre = $request->nombre;
-        // $user->email = $request->email;
-        // // $user->password = $request->password;
-        // $user->password = bcrypt($request->password);
-        // $user->save();
 
-        // User::create([
-        //     'nombre' => $request->nombre,
-        //     'email' => $request->email,
-        //     'password' => bcrypt($request->password),
-        // ]);
+        //creamos el usuario con los datos validados
+        $user = User::create([
+            'nombre' => $validated['nombre'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
+        ]);
         // return var_dump($validated);
-        $user = User::create($validated);
+        // $user = User::create($validated);
+
+        //asignamos el rol al usuario
         if ($request->cliente) {
             $user->assignRole('Cliente');
         }
@@ -140,13 +141,18 @@ class UserController extends Controller
         if ($request->admin) {
             $user->assignRole('Administrador');
         }
-        // $user->assignRole('Cliente');
 
-        // return redirect()->route('users.index')->with('success-store', 'Usuario creado correctamente');
-        // session()->flash('status', 'Usuario creado correctamente');
+        //creamos y asignamos un monedero al usuario
+        $monedero = new Monedero();
+        $monedero->saldo = 0;
+        $monedero->user_id = $user->id;
+        $monedero->save();
+
+        //redirigimos a la vista de listado de usuarios
         return to_route('users.index')->with('status', 'Usuario creado correctamente');
     }
 
+    // función para asignar un rol a un usuario
     public function setrole(Request $request, User $user)
     {
         $validated = $request->validate([
