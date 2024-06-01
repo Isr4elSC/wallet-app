@@ -24,8 +24,8 @@ class TransaccionFactory extends Factory
             'fecha_transaccion' => $this->faker->date(),
             'cantidad' => $this->faker->randomFloat(2, 0, 100),
             'concepto' => $this->faker->text(40),
-            'tipo_transaccion' => "compra",
-            'estado' => "pendiente"
+            'tipo_transaccion' => "Compra",
+            'estado' => "Pendiente"
         ];
     }
 }

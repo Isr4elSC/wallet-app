@@ -1,5 +1,5 @@
                     @if (session('status'))
-                        <div class="flex items-center p-4 text-sm text-sky-500 border¡ rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
+                        <div class="flex items-center p-4 text-sm text-sky-600 border¡ rounded-lg bg-blue-50"
                             role="alert">
                             <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -13,7 +13,7 @@
                         </div>
                     @endif
                     @if (session('success-update'))
-                        <div class="flex items-center p-4 text-sm text-sky-500 border¡ rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
+                        <div class="flex items-center p-4 text-sm text-green-600 border¡ rounded-lg bg-blue-50"
                             role="alert">
                             <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -28,7 +28,7 @@
                     @endif
 
                     @if (session('success-delete'))
-                        <div class="flex items-center p-4 text-sm text-sky-500 border¡ rounded-lg bg-blue-50 dark:bg-gray-800 dark:bg-blue-400 dark:border-blue-800"
+                        <div class="flex items-center p-4 text-sm text-red-600 border¡ rounded-lg bg-blue-50"
                             role="alert">
                             <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -42,7 +42,7 @@
                         </div>
                     @endif
                     @if (session('success'))
-                        <div class="flex items-center p-4 text-sm text-sky-500 border¡ rounded-lg bg-blue-50 dark:bg-gray-800 dark:bg-blue-400 dark:border-blue-800"
+                        <div class="flex items-center p-4 text-sm text-sky-600 border¡ rounded-lg bg-blue-50"
                             role="alert">
                             <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

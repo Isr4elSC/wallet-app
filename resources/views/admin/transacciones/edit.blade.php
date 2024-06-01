@@ -1,5 +1,7 @@
 <x-layouts.app header="Editar transaccion" title="Editor de transacciones"
     meta-description="formulario de edición de transacciones">
+    {{ Breadcrumbs::render('transacciones.edit', $transaccion) }}
+
     <form action="{{ route('transacciones.update', $transaccion) }}" method="POST" class="mt-8 space-y-6">
         @csrf
         @method('PATCH')

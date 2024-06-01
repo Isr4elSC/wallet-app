@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Transaccion;
+
 
 class TransaccionController extends Controller
 {
     public function index()
     {
-        $transacciones = Transaccion::all()->sortByDesc('fecha_transaccion');
+        $transacciones = Transaccion::all()->sortByDesc('fecha_transaccion'); //simplePaginate(15); 
+        // $transacciones = DB::table('transacciones')->orderBy('fecha_transaccion')->cursorPaginate(15);
         // return response()->json($transacciones);
         return view('admin.transacciones.index', ['transacciones' => $transacciones]);
     }
@@ -23,7 +26,9 @@ class TransaccionController extends Controller
 
     public function create()
     {
-        return view('admin.transacciones.create', ['transaccion' => new Transaccion()]);
+        $carbon = new \Carbon\Carbon();
+        $fecha = $carbon->now();
+        return view('admin.transacciones.create', ['transaccion' => new Transaccion(), 'fecha' => $fecha]);
     }
 
     public function edit(Transaccion $transaccion)
@@ -34,14 +39,16 @@ class TransaccionController extends Controller
     public function update(Request $request, Transaccion $transaccion)
     {
         $validated = $request->validate([
-            'fecha_transaccion' => 'required|date',
             'monedero_id' => 'required|integer',
             'comercio_id' => 'required|integer',
+            'fecha_transaccion' => 'required|date',
             'cantidad' => 'required|numeric',
-            'tipo_transaccion' => 'required|string',
+            'concepto' => 'required|string',
+            'tipo_transaccion' => 'required|string', // 'Compra', 'Recarga', 'Premio'
             'estado' => 'required|string', // 'Pendiente', 'Aprobado', 'Rechazado
-            'descripcion' => 'required|string',
         ]);
+        // return var_dump($validated);
+
         $transaccion->update($validated);
         return redirect()->route('transacciones.edit', $transaccion)
             ->with('success-update', 'Transaccion actualizada correctamente');
@@ -57,17 +64,18 @@ class TransaccionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'fecha_transaccion' => 'required|date',
             'monedero_id' => 'required|integer',
             'comercio_id' => 'required|integer',
+            'fecha_transaccion' => 'required|date',
             'cantidad' => 'required|numeric',
-            'tipo_transaccion' => 'required|string',
-            'estado' => 'required|string', // 'Pendiente', 'Aprobado', 'Rechazado
-            'descripcion' => 'required|string',
+            'concepto' => 'required|string',
+            'tipo_transaccion' => 'required|string', // 'Compra', 'Recarga', 'Premio'
+            'estado' => 'required|string', // 'Pendiente', 'Realizada', 'Cancelada'
         ]);
+        // return var_dump($validated);
 
-        Transaccion::create($validated);
-        return to_route('admin.transacciones.index')->with('success-create', 'Transaccion creada correctamente');
+        $transaccion = Transaccion::create($validated);
+        return to_route('transacciones.index')->with('success-create', 'Transaccion creada correctamente');
     }
 
     // public function obtenerTransaccion($id)

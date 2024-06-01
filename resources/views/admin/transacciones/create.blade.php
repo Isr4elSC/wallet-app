@@ -1,4 +1,7 @@
-<x-layouts.app header="Crear usuario" title="Creación de usuario" meta-description="formulario de creación de usuario">
+<x-layouts.app header="Nueva transacción" title="Creación de una transacción"
+    meta-description="formulario de creación de transacciones">
+    {{ Breadcrumbs::render('transacciones.create', $transaccion) }}
+
     <form action="{{ route('transacciones.store') }}" method="POST" class="mt-8 space-y-6">
         @csrf
         {{-- @dump($errors->all()) --}}

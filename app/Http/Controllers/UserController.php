@@ -7,6 +7,7 @@ use App\Models\Monedero;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
@@ -62,6 +63,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'nombre' => 'required',
             'email' => 'required|email',
+            // 'password' => 'required|confirmed', Rules\Password::defaults(),
         ]);
         // $user->update($request->all());
         // $user->update($request->only('nombre', 'email'));
@@ -76,8 +78,23 @@ class UserController extends Controller
         //     'nombre' => $request->nombre,
         //     'email' => $request->email,
         // ]);
-
+        // return var_dump(isset($request->cliente), isset($request->comercio), isset($request->admin));
         $user->update($validated);
+        if (isset($request->cliente)) {
+            $user->assignRole('Cliente');
+        } else {
+            $user->removeRole('Cliente');
+        }
+        if (isset($request->comercio)) {
+            $user->assignRole('Comercio');
+        } else {
+            $user->removeRole('Comercio');
+        }
+        if (isset($request->administrador)) {
+            $user->assignRole('Administrador');
+        } else {
+            $user->removeRole('Administrador');
+        }
 
         // session()->flash('status', 'Usuario actualizado correctamente');
         // return to_route('user.show', $user);
@@ -98,7 +115,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'nombre' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|confirmed', Rules\Password::defaults(),
         ]);
         // $user = new User();
         // $user->nombre = $request->nombre;
@@ -112,10 +129,31 @@ class UserController extends Controller
         //     'email' => $request->email,
         //     'password' => bcrypt($request->password),
         // ]);
+        // return var_dump($validated);
+        $user = User::create($validated);
+        if ($request->cliente) {
+            $user->assignRole('Cliente');
+        }
+        if ($request->comercio) {
+            $user->assignRole('Comercio');
+        }
+        if ($request->admin) {
+            $user->assignRole('Administrador');
+        }
+        // $user->assignRole('Cliente');
 
-        User::create($validated);
         // return redirect()->route('users.index')->with('success-store', 'Usuario creado correctamente');
         // session()->flash('status', 'Usuario creado correctamente');
         return to_route('users.index')->with('status', 'Usuario creado correctamente');
+    }
+
+    public function setrole(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'role' => 'required',
+        ]);
+        $user->roles()->sync($request->role);
+        return redirect()->route('users.edit', $user)
+            ->with('success-update', 'Rol establecido correctamente');
     }
 }

@@ -1,30 +1,73 @@
 <x-layouts.app :title="'Transacción Nº ' . $transaccion->id" :header="'Nº de Transacción ' . $transaccion->id" :meta-description="'informacion de la transacción ' . $transaccion->id">
-    {{ Breadcrumbs::render('transacciones.show', $transaccion) }}
-    <p>Fecha de transacción: {{ date('d-m-Y', strtotime($transaccion->fecha_transaccion)) }}</p>
-    <p>Usuario: {{ $transaccion->monedero->user->nombre }}</p>
-    <p>Comercio: {{ $transaccion->comercio->nombre_comercio }}</p>
-    <p>Cantidad: {{ $transaccion->cantidad }} €</p>
-    <p>Tipo: {{ $transaccion->tipo_transaccion }}</p>
-    <p>Estado: {{ $transaccion->estado }}</p>
-    <p>Concepto: {{ $transaccion->concepto }}</p>
-    <p>Fecha de creación: {{ $transaccion->created_at }}</p>
-    <p>Fecha de actualización: {{ $transaccion->updated_at }}</p>
+    <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
+        <div class="flex flex-col px-4 pt-6 dark:bg-gray-900">
 
-    <a class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-sky-500 rounded-lg hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        href="{{ route('transacciones.edit', $transaccion) }}"><svg class="w-4 h-4 mr-2" fill="currentColor"
-            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
-            </path>
-            <path fill-rule="evenodd"
-                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                clip-rule="evenodd"></path>
-        </svg> Editar</a>
-    <a class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        href="{{ route('transacciones.index') }}">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" width="18" height="18" viewBox="0 0 24 24"
-            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 14l-4 -4l4 -4" />
-            <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
-        </svg>
-        </svg> Volver</a>
+            {{ Breadcrumbs::render('transacciones.show', $transaccion) }}
+            <x-flash />
+            <div
+                class="p-4 my-6 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 xl:p-8 dark:bg-gray-800">
+                <div class="flex flex-col w-full">
+                    <header>
+                        <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+                            Transacción Nº {{ $transaccion->id }}
+                        </h1>
+                    </header>
+                    <main>
+                        <div class="flex flex-wrap -ml-4">
+                            <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
+                                <h2 class="text-sm text-gray-500 dark:text-white">Orden de transacción: </p>
+                                    <p class="mb-2 text-base text-gray-600 dark:text-white">{{ $transaccion->id }}</p>
+                            </div>
+                            <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
+                                <h2 class="text-sm text-gray-500 dark:text-white">Fecha de transacción: </p>
+                                    <p class="mb-2 text-base text-gray-600 dark:text-white">
+                                        {{ date('d/m/Y', strtotime($transaccion->fecha_transaccion)) }}</p>
+                            </div>
+                            <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
+                                <h2 class="text-sm text-gray-500 dark:text-white">Usuario: </p>
+                                    <p class="mb-2 text-base text-gray-600 dark:text-white">
+                                        {{ $transaccion->monedero->user->nombre }}</p>
+                            </div>
+
+                            <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
+                                <h2 class="text-sm text-gray-500 dark:text-white">Comercio: </p>
+                                    <p class="mb-2 text-base text-gray-600 dark:text-white">
+                                        {{ $transaccion->comercio->nombre }}
+                                    </p>
+                            </div>
+                            <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
+                                <h2 class="text-sm text-gray-500 dark:text-white">Cantidad: </p>
+                                    <p class="mb-2 text-base text-gray-600 dark:text-white">
+                                        {{ $transaccion->cantidad }} €</p>
+                            </div>
+                            <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
+                                <h2 class="text-sm text-gray-500 dark:text-white"> Tipo: </p>
+                                    <p class="mb-2 text-base text-gray-600 dark:text-white">
+                                        {{ $transaccion->tipo_transaccion }}</p>
+                            </div>
+                            <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
+                                <h2 class="text-sm text-gray-500 dark:text-white">Estado: </p>
+                                    <p class="mb-2 text-base text-gray-600 dark:text-white">{{ $transaccion->estado }}
+                                    </p>
+                            </div>
+                            <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
+                                <h2 class="text-sm text-gray-500 dark:text-white">Concepto: </p>
+                                    <p class="mb-2 text-base text-gray-600 dark:text-white">{{ $transaccion->concepto }}
+                                    </p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="my-4 text-sm text-gray-400 dark:text-white">Fecha de creación:
+                                {{ $transaccion->created_at }} -
+                                Fecha de actualización: {{ $transaccion->updated_at }}</p>
+                        </div>
+                        <x-transacciones.acciones-show :transaccion="$transaccion" />
+
+                    </main>
+                </div>
+            </div>
+        </div>
+        <x-footer />
+    </div>
+</x-layouts.app>
 </x-layouts.app>

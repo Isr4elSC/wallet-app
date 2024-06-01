@@ -12,7 +12,7 @@ class Transaccion extends Model
     protected $table = 'transacciones';
 
     protected $fillable = [
-        'mondero_id',
+        'monedero_id',
         'comercio_id',
         'fecha_transaccion',
         'cantidad',
@@ -21,10 +21,6 @@ class Transaccion extends Model
         'estado',
     ];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(Monedero::class, 'id_monedero')->belongsTo(User::class, 'id_usuario');
-    // }
 
     public function comercio()
     {
@@ -34,10 +30,5 @@ class Transaccion extends Model
     public function monedero()
     {
         return $this->belongsTo(Monedero::class, 'monedero_id', 'id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

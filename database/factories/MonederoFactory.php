@@ -18,9 +18,10 @@ class MonederoFactory extends Factory
     public function definition(): array
     {
         $valor = 100.00;
+        $usuario = User::all()->random()->assignRole('Comercio');
         return [
             //
-            'user_id' => User::all()->random()->id,
+            'user_id' => $usuario,
             'saldo' => $valor,
         ];
     }

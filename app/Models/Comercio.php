@@ -14,16 +14,16 @@ class Comercio extends Model
     protected $fillable = [
         'user_id',
         'nombre',
-        // 'nif',
-        // 'categoria',
+        'nif',
         'direccion',
-        // 'telefono',
-        // 'email',
-        // 'logo',
-        // 'web',
-        // 'calificacion',
+        'poblacion',
+        'provincia',
+        'cp',
+        'telefono',
+        'email',
+        'logo',
+        'web',
         'saldo',
-
     ];
 
     public function transacciones()

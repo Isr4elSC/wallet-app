@@ -15,12 +15,15 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->string('nombre');
-            // $table->string('nif')->unique();
-            // $table->string('direccion');
-            // $table->string('telefono')->nullable();
-            // $table->string('email')->unique();
-            // $table->string('web')->nullable();
-            // $table->string('logo')->nullable();
+            $table->string('nif')->unique();
+            $table->string('direccion');
+            $table->string('poblacion');
+            $table->string('provincia');
+            $table->string('cp');
+            $table->string('telefono')->nullable();
+            $table->string('email')->unique();
+            $table->string('web')->nullable();
+            $table->string('logo')->nullable();
             $table->decimal('saldo', 10, 2)->default(0);
             $table->timestamps();
 

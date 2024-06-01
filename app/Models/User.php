@@ -22,9 +22,9 @@ class User extends Authenticatable
         'nombre',
         'email',
         'password',
-        'fecha_nacimiento',
-        'telefono',
-        'direccion',
+        // 'fecha_nacimiento',
+        // 'telefono',
+        // 'direccion',
         // 'foto_perfil'
     ];
 

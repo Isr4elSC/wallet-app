@@ -20,13 +20,16 @@ class ComercioFactory extends Factory
         return [
             'user_id' => User::all()->random()->id, // Selecciona un usuario aleatorio (id
             'nombre' => $this->faker->name(),
-            // 'nif' => $this->faker->unique()->text(9),
-            // // 'categoria' => $this->faker->word(),
-            // 'direccion' => $this->faker->address(),
-            // 'telefono' => $this->faker->phoneNumber(),
-            // 'email' => $this->faker->unique()->safeEmail(),
-            // 'logo' => $this->faker->imageUrl(),
-            // 'web' => $this->faker->url(),
+            'nif' => $this->faker->unique()->text(9),
+            // 'categoria' => $this->faker->word(),
+            'direccion' => $this->faker->address(),
+            'poblacion' => $this->faker->city(),
+            'provincia' => $this->faker->state(),
+            'cp' => $this->faker->postcode(),
+            'telefono' => $this->faker->phoneNumber(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'logo' => $this->faker->imageUrl(),
+            'web' => $this->faker->url(),
             // 'calificacion' => $this->faker->randomFloat(2, 0, 10),
             'saldo' => 0,
         ];

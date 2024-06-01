@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Monedero;
 use App\Models\Transaccion;
+use App\Models\User;
 
 class MonederoController extends Controller
 {
@@ -87,6 +88,7 @@ class MonederoController extends Controller
         ]);
 
         $monedero = Monedero::create($datos);
+        $monedero->user->assignRole('Cliente');
 
         return redirect()->route('monederos.index', $monedero)->with('status', 'Monedero creado con éxito');
     }
@@ -108,8 +110,10 @@ class MonederoController extends Controller
             'user_id' => 'required|integer',
             'saldo' => 'required|numeric'
         ]);
-        // $monedero = Monedero::find($monedero);
+
         $monedero->update($datos);
+        $monedero->user->assignRole('Cliente');
+
         return redirect()->route('monederos.edit', $monedero)->with('status', 'Monedero actualizado con éxito');
     }
 

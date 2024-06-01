@@ -7,7 +7,6 @@ use App\Http\Controllers\ComercioController;
 use App\Http\Controllers\TransaccionController;
 use App\Http\Controllers\SorteoController;
 use App\Http\Controllers\PromocionController;
-use App\Models\Comercio;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,7 +19,7 @@ Route::get('/', function () {
 
 //ADMINISTRACION
 
-Route::view('/admin', 'admin.index')->name('admin')->middleware('auth')->middleware('can:admin');
+Route::view('/admin', 'admin')->name('admin')->middleware('auth')->middleware('can:admin');
 
 
 //Rutas para la administracion de Usuarios
