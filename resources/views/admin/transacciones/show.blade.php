@@ -1,4 +1,5 @@
 <x-layouts.app :title="'Transacción Nº ' . $transaccion->id" :header="'Nº de Transacción ' . $transaccion->id" :meta-description="'informacion de la transacción ' . $transaccion->id">
+    {{ Breadcrumbs::render('transacciones.show', $transaccion) }}
     <p>Fecha de transacción: {{ date('d-m-Y', strtotime($transaccion->fecha_transaccion)) }}</p>
     <p>Usuario: {{ $transaccion->monedero->user->nombre }}</p>
     <p>Comercio: {{ $transaccion->comercio->nombre_comercio }}</p>

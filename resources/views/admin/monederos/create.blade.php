@@ -1,4 +1,5 @@
 <x-layouts.app header="Crear Monedero" title="Creación de Monedero" meta-description="formulario de creación de monedero">
+    {{ Breadcrumbs::render('monederos.create') }}
     <form action="{{ route('monederos.store') }}" method="POST" class="mt-8 space-y-6">
         @csrf
         @method('POST')

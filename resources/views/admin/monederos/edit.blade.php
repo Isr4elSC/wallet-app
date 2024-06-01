@@ -1,4 +1,5 @@
 <x-layouts.app header="Editar monedero" title="Editor de monedero" meta-description="formulario de edición de monedero">
+    {{ Breadcrumbs::render('monederos.edit', $monedero) }}
     <form action="{{ route('monederos.update', $monedero) }}" method="POST" class="mt-8 space-y-6">
         @csrf
         @method('PATCH')

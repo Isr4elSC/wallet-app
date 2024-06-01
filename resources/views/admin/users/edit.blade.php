@@ -1,4 +1,5 @@
 <x-layouts.app header="Editar usuario" title="Editor de usuario" meta-description="formulario de creación de usuario">
+    {{ Breadcrumbs::render('users.edit', $user) }}
     <form action="{{ route('users.update', $user) }}" method="POST" class="mt-8 space-y-6">
         @csrf
         @method('PATCH')

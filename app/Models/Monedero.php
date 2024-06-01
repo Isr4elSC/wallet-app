@@ -13,18 +13,17 @@ class Monedero extends Model
 
     protected $fillable = [
         'user_id',
-        'saldo',
-
+        'saldo'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
 
     public function transacciones()
     {
-        return $this->hasMany(Transaccion::class, 'id_monedero', 'id');
+        return $this->hasMany(Transaccion::class, 'monedero_id', 'id');
     }
 }

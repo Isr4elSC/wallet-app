@@ -35,8 +35,8 @@ class TransaccionController extends Controller
     {
         $validated = $request->validate([
             'fecha_transaccion' => 'required|date',
-            'id_usuario' => 'required|integer',
-            'id_comercio' => 'required|integer',
+            'monedero_id' => 'required|integer',
+            'comercio_id' => 'required|integer',
             'cantidad' => 'required|numeric',
             'tipo_transaccion' => 'required|string',
             'estado' => 'required|string', // 'Pendiente', 'Aprobado', 'Rechazado
@@ -58,8 +58,8 @@ class TransaccionController extends Controller
     {
         $validated = $request->validate([
             'fecha_transaccion' => 'required|date',
-            'id_usuario' => 'required|integer',
-            'id_comercio' => 'required|integer',
+            'monedero_id' => 'required|integer',
+            'comercio_id' => 'required|integer',
             'cantidad' => 'required|numeric',
             'tipo_transaccion' => 'required|string',
             'estado' => 'required|string', // 'Pendiente', 'Aprobado', 'Rechazado

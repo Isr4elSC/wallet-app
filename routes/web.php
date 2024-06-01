@@ -7,20 +7,19 @@ use App\Http\Controllers\ComercioController;
 use App\Http\Controllers\TransaccionController;
 use App\Http\Controllers\SorteoController;
 use App\Http\Controllers\PromocionController;
+use App\Models\Comercio;
 use Illuminate\Support\Facades\Route;
-
-
 
 
 //Ruta de inicio
 Route::get('/', function () {
     return view('welcome');
 })->name('inicio');
+// Route::view('/inicio', 'inicio')->name('inicio');
 
 
 //ADMINISTRACION
 
-// Route::view('/inicio', 'inicio')->name('inicio');
 Route::view('/admin', 'admin.index')->name('admin')->middleware('auth')->middleware('can:admin');
 
 
@@ -55,22 +54,24 @@ Route::get('/admin/transacciones/{transaccion}', [TransaccionController::class, 
 Route::get('/admin/transacciones/{transaccion}/edit', [TransaccionController::class, 'edit'])->name('transacciones.edit')->middleware('auth')->middleware('can:manage-transacciones');
 Route::patch('/admin/transacciones/{transaccion}', [TransaccionController::class, 'update'])->name('transacciones.update')->middleware('auth')->middleware('can:manage-transacciones');
 Route::delete('/admin/transacciones/{transaccion}', [TransaccionController::class, 'destroy'])->name('transacciones.destroy')->middleware('auth')->middleware('can:manage-transacciones');
+Route::post('/admin/transacciones/', [TransaccionController::class, 'store'])->name('transacciones.store')->middleware('auth')->middleware('can:manage-transacciones');
 
+//Rutas para la administración de Comercios
+Route::get('/admin/comercios', [ComercioController::class, 'index'])->name('comercios.index')->middleware('auth')->middleware('can:manage-comercios');
+Route::get('/admin/comercios/create', [ComercioController::class, 'create'])->name('comercios.create')->middleware('auth')->middleware('can:manage-comercios');
+Route::get('/admin/comercios/{comercio}', [ComercioController::class, 'show'])->name('comercios.show')->middleware('auth')->middleware('can:manage-comercios');
+Route::get('/admin/comercios/{comercio}/edit', [ComercioController::class, 'edit'])->name('comercios.edit')->middleware('can:manage-comercios');
+Route::patch('/admin/comercios/{comercio}', [ComercioController::class, 'update'])->name('comercios.update')->middleware('can:manage-comercios');
+route::delete('/admin/comercios/{comercio}', [ComercioController::class, 'destroy'])->name('comercios.destroy')->middleware('auth')->middleware('can:manage-comercios');
+Route::post('/admin/comercios/', [ComercioController::class, 'store'])->name('comercios.store')->middleware('can:manage-comercios');
+// Route::resource('/admin/comercios', ComercioController::class)
+//     ->names('comercios')
+//     ->middleware('auth')
+//     ->middleware('can:manage-comercios');
 
-// Administración de Comercios
-// Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.index');
-// Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.show');
-// Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.edit');
-// Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.update');
-// Route::get('/comercios', [ComercioController::class, 'index'])->name('comercios.destroy');
 
 // Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
-//Rutas para la administración de Comercios
-Route::resource('/admin/comercios', ComercioController::class)
-    ->names('comercios')
-    ->middleware('auth')
-    ->middleware('can:manage-comercios');
 
 //Rutas para la administración de Sorteos
 Route::resource('/admin/sorteos', SorteoController::class)

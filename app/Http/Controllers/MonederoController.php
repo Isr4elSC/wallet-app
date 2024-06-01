@@ -82,13 +82,13 @@ class MonederoController extends Controller
     public function store(Request $request)
     {
         $datos = $request->validate([
-            'id_user' => 'required|integer',
+            'user_id' => 'required|integer',
             'saldo' => 'required|numeric'
         ]);
 
         $monedero = Monedero::create($datos);
 
-        return redirect()->route('monederos.index')->with('status', 'Monedero creado con éxito');
+        return redirect()->route('monederos.index', $monedero)->with('status', 'Monedero creado con éxito');
     }
 
     public function show(Monedero $monedero)
@@ -102,10 +102,14 @@ class MonederoController extends Controller
         return view('admin.monederos.edit', ['monedero' => $monedero]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Monedero $monedero)
     {
-        $monedero = Monedero::find($id);
-        $monedero->update($request->all());
+        $datos = $request->validate([
+            'user_id' => 'required|integer',
+            'saldo' => 'required|numeric'
+        ]);
+        // $monedero = Monedero::find($monedero);
+        $monedero->update($datos);
         return redirect()->route('monederos.edit', $monedero)->with('status', 'Monedero actualizado con éxito');
     }
 

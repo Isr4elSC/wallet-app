@@ -1,5 +1,7 @@
 {{-- <x-layouts.app title="Usuario {{ $user->nombre }}" meta-description="informacion del usuario {{ $user->nombre }}"> --}}
 <x-layouts.app :title="'Usuario ' . $user->nombre" :header="'Usuario ' . $user->nombre" :meta-description="'informacion del uduario ' . $user->nombre">
+    {{ Breadcrumbs::render('users.show', $user) }}
+
     <p>Nombre: {{ $user->nombre }}</p>
     <p>Email: {{ $user->email }}</p>
     <p>Fecha creado: {{ $user->created_at }}</p>

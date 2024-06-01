@@ -1,5 +1,5 @@
-<x-layouts.app header="Crear usuario" title="Creación de usuario" meta-description="formulario de creación de usuario">
-    <form action="{{ route('users.store') }}" method="POST" class="mt-8 space-y-6">
+<x-layouts.app header="Crear Comercio" title="Creación de Comercio" meta-description="formulario de creación de comercio">
+    <form action="{{ route('comercios.store') }}" method="POST" class="mt-8 space-y-6">
         @csrf
         @method('POST')
         @include('admin.comercios._form')
@@ -7,4 +7,5 @@
             {{ 'Crear Comercio' }}
         </x-primary-button>
     </form>
+
 </x-layouts.app>

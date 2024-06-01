@@ -1,4 +1,5 @@
 <x-layouts.app header="Monederos" title="Monederos" meta-description="Listado de monederos de la app">
+    {{ Breadcrumbs::render('monederos.index') }}
     <div class="my-4 py-4">
         <a class="text-white my-9 bg-sky-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
             href="{{ route('monederos.create') }}">Crear Monedero</a>

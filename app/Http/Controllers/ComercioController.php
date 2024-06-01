@@ -12,8 +12,7 @@ class ComercioController extends Controller
 
     public function index()
     {
-        $comercios = Comercio::simplePaginate(20);
-        // return response()->json($comercios);
+        $comercios = Comercio::simplePaginate(15);
         return view('admin.comercios.index', ['comercios' => $comercios]);
     }
 
@@ -35,29 +34,42 @@ class ComercioController extends Controller
     public function update(Request $request, Comercio $comercio)
     {
         $validated = $request->validate([
+            'user_id'  => 'required',
             'nombre' => 'required',
-            'email' => 'required|email',
+            // 'direccion' => 'required',
+            // 'nif' => 'required',
+            // 'telefono' => 'required|numeric|digits:9|starts_with:6,7,9',
+            // 'email' => 'required|email',
+            // 'web' => 'nullable|url',
+            'saldo' => 'required|numeric',
         ]);
-        $comercio->update($request->all());
-        return redirect()->route('comercios.edit', $comercio)
-            ->with('success-update', 'Comercio actualizado correctamente');
+        $comercio->update($validated);
+        return to_route('comercios.edit', $comercio)
+            ->with('status', 'Comercio actualizado correctamente');
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'user_id'  => 'required',
             'nombre' => 'required',
-            'email' => 'required|email',
+            // 'nif' => 'required',
+            // 'direccion' => 'required',
+            // 'telefono' => 'required|numeric|digits:9|starts_with:6,7,9',
+            // 'email' => 'required|email',
+            // 'web' => 'nullable|url',
+            'saldo' => 'required|numeric',
         ]);
-        $comercio = Comercio::create($request->all());
-        return redirect()->route('comercios.edit', $comercio)
-            ->with('success', 'Comercio creado correctamente');
+
+        $comercio = Comercio::create($validated);
+        return to_route('comercios.edit', $comercio)
+            ->with('status', 'Comercio creado correctamente');
     }
 
     public function destroy(Comercio $comercio)
     {
         $comercio->delete();
         return redirect()->route('comercios.index')
-            ->with('success-delete', 'Comercio eliminado correctamente');
+            ->with('status', 'Comercio eliminado correctamente');
     }
 }

@@ -1,6 +1,7 @@
 {{-- @component('components.layout'); --}}
 
 <x-layouts.app title="Comercios" header="Comercios" meta-description="meta descripción del Comercios">
+    {{ Breadcrumbs::render('comercios.index') }}
     <div class="my-4 py-4">
         <a class="text-white my-9 bg-sky-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
             href="{{ route('comercios.create') }}">Crear Comercio</a>
@@ -14,15 +15,19 @@
                             <tr>
                                 <th
                                     class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Comercio
+                                    Nombre del comercio
                                 </th>
-                                {{-- <th
+                                <th
                                     class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Descripción
-                                </th> --}}
+                                    Dirección
+                                </th>
                                 <th
                                     class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     web
+                                </th>
+                                <th
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Administrador
                                 </th>
                                 <th
                                     class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -39,13 +44,13 @@
                                 <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $comercio->nombre_comercio }}
+                                        {{ $comercio->nombre }}
                                     </td>
-                                    {{-- <td
+                                    <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $comercio->descripcion }}
+                                        {{ $comercio->direccion }}
 
-                                    </td> --}}
+                                    </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
                                         {{ $comercio->pagina_web }}
@@ -53,7 +58,10 @@
                                     </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $comercio->saldo_disponible }}
+                                        {{ $comercio->user->nombre }}
+                                    <td
+                                        class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        {{ $comercio->saldo }}
                                     </td>
                                     <td
                                         class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
@@ -82,8 +90,9 @@
             </div>
         </div>
     </div>
-
-    {{-- {{ $comercios->links() }} --}}
+    <div class="mt-5">
+        {{ $comercios->links() }}
+    </div>
 
 </x-layouts.app>
 

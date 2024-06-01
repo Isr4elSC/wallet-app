@@ -1,4 +1,5 @@
 <x-layouts.app header="Crear usuario" title="Creación de usuario" meta-description="formulario de creación de usuario">
+    {{ Breadcrumbs::render('users.create', $user) }}
     <form action="{{ route('users.store') }}" method="POST" class="mt-8 space-y-6">
         @csrf
         @method('POST')

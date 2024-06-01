@@ -8,7 +8,7 @@
 @endsection --}}
 
 <x-layouts.app header="Transacciones" title="Transacciones" meta-description="Listado de transacciones de la app">
-
+    {{ Breadcrumbs::render('transacciones.index') }}
     {{-- @if (session('status'))
         <div class="status">{{ session('status') }}</div>
     @endif --}}
