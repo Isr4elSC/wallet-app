@@ -8,7 +8,7 @@
                 <div class="flex flex-col w-full">
                     <header>
                         <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                            Nuevo Monedero
+                            Nuevo Comercio
                         </h1>
                     </header>
                     <main>

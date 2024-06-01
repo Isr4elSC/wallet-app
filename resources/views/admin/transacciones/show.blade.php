@@ -16,52 +16,52 @@
                         <div class="flex flex-wrap -ml-4">
                             <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
                                 <h2 class="text-sm text-gray-500 dark:text-white">Orden de transacción: </p>
-                                    <p class="mb-2 text-base text-gray-600 dark:text-white">{{ $transaccion->id }}</p>
+                                    <p class="mb-2 text-base text-gray-800 dark:text-white">{{ $transaccion->id }}</p>
                             </div>
                             <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
                                 <h2 class="text-sm text-gray-500 dark:text-white">Fecha de transacción: </p>
-                                    <p class="mb-2 text-base text-gray-600 dark:text-white">
+                                    <p class="mb-2 text-base text-gray-800 dark:text-white">
                                         {{ date('d/m/Y', strtotime($transaccion->fecha_transaccion)) }}</p>
                             </div>
                             <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
                                 <h2 class="text-sm text-gray-500 dark:text-white">Usuario: </p>
-                                    <p class="mb-2 text-base text-gray-600 dark:text-white">
+                                    <p class="mb-2 text-base text-gray-800 dark:text-white">
                                         {{ $transaccion->monedero->user->nombre }}</p>
                             </div>
 
                             <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
                                 <h2 class="text-sm text-gray-500 dark:text-white">Comercio: </p>
-                                    <p class="mb-2 text-base text-gray-600 dark:text-white">
+                                    <p class="mb-2 text-base text-gray-800 dark:text-white">
                                         {{ $transaccion->comercio->nombre }}
                                     </p>
                             </div>
                             <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
                                 <h2 class="text-sm text-gray-500 dark:text-white">Cantidad: </p>
-                                    <p class="mb-2 text-base text-gray-600 dark:text-white">
+                                    <p class="mb-2 text-base text-gray-800 dark:text-white">
                                         {{ $transaccion->cantidad }} €</p>
                             </div>
                             <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
                                 <h2 class="text-sm text-gray-500 dark:text-white"> Tipo: </p>
-                                    <p class="mb-2 text-base text-gray-600 dark:text-white">
+                                    <p class="mb-2 text-base text-gray-800 dark:text-white">
                                         {{ $transaccion->tipo_transaccion }}</p>
                             </div>
                             <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
                                 <h2 class="text-sm text-gray-500 dark:text-white">Estado: </p>
-                                    <p class="mb-2 text-base text-gray-600 dark:text-white">{{ $transaccion->estado }}
+                                    <p class="mb-2 text-base text-gray-800 dark:text-white">{{ $transaccion->estado }}
                                     </p>
                             </div>
                             <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
                                 <h2 class="text-sm text-gray-500 dark:text-white">Concepto: </p>
-                                    <p class="mb-2 text-base text-gray-600 dark:text-white">{{ $transaccion->concepto }}
+                                    <p class="mb-2 text-base text-gray-800 dark:text-white">{{ $transaccion->concepto }}
                                     </p>
                             </div>
                         </div>
+                        <x-transacciones.acciones-show :transaccion="$transaccion" />
                         <div>
                             <p class="my-4 text-sm text-gray-400 dark:text-white">Fecha de creación:
                                 {{ $transaccion->created_at }} -
                                 Fecha de actualización: {{ $transaccion->updated_at }}</p>
                         </div>
-                        <x-transacciones.acciones-show :transaccion="$transaccion" />
 
                     </main>
                 </div>
@@ -69,5 +69,4 @@
         </div>
         <x-footer />
     </div>
-</x-layouts.app>
 </x-layouts.app>

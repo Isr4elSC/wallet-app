@@ -2,7 +2,7 @@
            $usuarios = App\Models\User::all();
        @endphp
 
-       <div>
+       <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_id">Selecciona el
                usuario administrador del comercio</label>
            <select name="user_id" id="user_id"
@@ -19,7 +19,7 @@
                <div style="color:red">{{ $message }}</div>
            @enderror
        </div>
-       <div>
+       <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="nombre">Nombre del
                comercio</label>
            <input
@@ -30,7 +30,7 @@
                <div style="color:red">{{ $message }}</div>
            @enderror
        </div>
-       <div>
+       <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="nif">NIF</label>
            <input
                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
@@ -40,7 +40,7 @@
                <div style="color:red">{{ $message }}</div>
            @enderror
        </div>
-       <div>
+       <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="direccion">Dirección</label>
            <input
                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
@@ -50,7 +50,7 @@
                <div style="color:red">{{ $message }}</div>
            @enderror
        </div>
-       <div>
+       <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="poblacion">Población</label>
            <input
                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
@@ -60,7 +60,7 @@
                <div style="color:red">{{ $message }}</div>
            @enderror
        </div>
-       <div>
+       <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="provincia">Provincia</label>
            <input
                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
@@ -70,7 +70,7 @@
                <div style="color:red">{{ $message }}</div>
            @enderror
        </div>
-       <div>
+       <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="cp">Código
                Postal</label>
            <input
@@ -81,7 +81,7 @@
                <div style="color:red">{{ $message }}</div>
            @enderror
        </div>
-       <div>
+       <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="telefono">Teléfono</label>
            <input
                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
@@ -91,7 +91,7 @@
                <div style="color:red">{{ $message }}</div>
            @enderror
        </div>
-       <div>
+       <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="email">Email</label>
            <input
                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
@@ -101,7 +101,7 @@
                <div style="color:red">{{ $message }}</div>
            @enderror
        </div>
-       <div>
+       <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="web">Web</label>
            <input
                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
@@ -111,7 +111,7 @@
                <div style="color:red">{{ $message }}</div>
            @enderror
        </div>
-       <div>
+       <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="saldo">Saldo</label>
            <input
                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"

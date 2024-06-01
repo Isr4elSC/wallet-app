@@ -12,7 +12,7 @@
                         </h1>
                     </header>
                     <div class="my-4 py-4">
-                        <a class="px-5 py-2.5 text-sm font-medium text-center inline-flex items-center text-white bg-sky-500 rounded-lg hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300"
+                        <a class="px-5 py-2.5 text-sm uppercase font-medium text-center inline-flex items-center text-white bg-sky-500 rounded-lg hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300"
                             href="{{ route('transacciones.create') }}">Nueva Transacción</a>
                     </div>
 
