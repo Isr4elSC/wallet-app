@@ -78,17 +78,17 @@ Route::get('/user/comercio/{comercio}', [ComercioController::class, 'acceder'])-
 
 //Rutas para visualizar las ventas del usuario
 Route::get('/user/comercio/ventas/', [VentaController::class, 'index'])->name('venta-index')->middleware('auth')->middleware('can:realizar-ventas');
-Route::get('/user/comercio/ventas/create/{comercio}', [VentaController::class, 'create'])->name('venta-create')->middleware('auth')->middleware('can:realizar-ventas');
+Route::get('/user/comercio/{comercio}/ventas/create/', [VentaController::class, 'create'])->name('venta-create')->middleware('auth')->middleware('can:realizar-ventas');
 Route::get('/user/comercio/ventas/{venta}', [VentaController::class, 'show'])->name('venta-show')->middleware('auth')->middleware('can:realizar-ventas');
 Route::get('/user/comercio/ventas/{venta}/edit', [VentaController::class, 'edit'])->name('venta-edit')->middleware('auth')->middleware('can:realizar-ventas');
 Route::patch('/user/comercio/ventas/{venta}', [VentaController::class, 'update'])->name('venta-update')->middleware('auth')->middleware('can:realizar-ventas');
-Route::post('/user/comercio/ventas/', [VentaController::class, 'store'])->name('venta-store')->middleware('auth')->middleware('can:realizar-ventas');
+Route::post('/user/comercio/{comercio}/ventas/', [VentaController::class, 'store'])->name('venta-store')->middleware('auth')->middleware('can:realizar-ventas');
 Route::delete('/user/comercio/ventas/{venta}', [VentaController::class, 'destroy'])->name('venta-destroy')->middleware('auth')->middleware('can:realizar-ventas');
 
 
 //Rutas de autenticacion
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 

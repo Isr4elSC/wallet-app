@@ -142,7 +142,7 @@ Breadcrumbs::for('comercio-usuario', function (BreadcrumbTrail $trail, Comercio 
     $trail->push('Comercio', route('comercio-usuario', $comercio));
 });
 
-Breadcrumbs::for('transaccion.user.emitir', function (BreadcrumbTrail $trail, Comercio $comercio): void {
+Breadcrumbs::for('venta-create', function (BreadcrumbTrail $trail, Comercio $comercio): void {
     $trail->parent('comercio-usuario', $comercio);
-    $trail->push('Emitir transacción', route('transaccion.user.emitir'));
+    $trail->push('realizar venta', route('venta-create', $comercio));
 });

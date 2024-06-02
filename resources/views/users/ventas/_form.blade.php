@@ -1,6 +1,5 @@
        @php
            $monederos = App\Models\Monedero::all();
-
            if (isset($fecha)) {
                $fecha = date('Y-m-d', strtotime($fecha));
            } else {
@@ -32,8 +31,7 @@
        </div>
        <div class="lg:w-1/2">
            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="fecha_transaccion">Fecha de
-               transacción</label>
-
+               la venta</label>
            <input
                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
                type="date" name="fecha_transaccion" id="fecha_transaccion" {{-- value="{{ old('fecha_transaccion', date('Y-m-d', strtotime($transaccion->fecha_transaccion))) }}" --}}
@@ -63,53 +61,5 @@
                <div style="color:red">{{ $message }}</div>
            @enderror
        </div>
-       <div class="lg:w-1/2">
-           <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="tipo_transaccion">Tipo de
-               Transacción</label>
-           <select name="tipo_transaccion" id="tipo_transaccion"
-               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500">
-               @if (old('tipo_transaccion', $transaccion->tipo_transaccion) == 'Compra')
-                   <option value="Compra" selected>Compra</option>
-               @else
-                   <option value="Compra">Compra</option>
-               @endif
-               @if (old('tipo_transaccion', $transaccion->tipo_transaccion) == 'Recarga')
-                   <option value="Recarga" selected>Recarga</option>
-               @else
-                   <option value="Recarga">Recarga</option>
-               @endif
-               @if (old('tipo_transaccion', $transaccion->tipo_transaccion) == 'Premio')
-                   <option value="Premio" selected>Premio</option>
-               @else
-                   <option value="Premio">Premio</option>
-               @endif
-           </select>
-           @error('tipo_transaccion')
-               <div style="color:red">{{ $message }}</div>
-           @enderror
-       </div>
-       <div class="lg:w-1/2">
-           <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="estado" required>Estado
-           </label>
-           <select name="estado" id="estado"
-               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500">
-               @if (old('estado', $transaccion->estado) == 'Pendiente')
-                   <option value="Pendiente" selected>Pendiente</option>
-               @else
-                   <option value="Pendiente">Pendiente</option>
-               @endif
-               @if (old('estado', $transaccion->estado) == 'Realizada')
-                   <option value="Realizada" selected>Realizada</option>
-               @else
-                   <option value="Realizada">Realizada</option>
-               @endif
-               @if (old('estado', $transaccion->estado) == 'Cancelada')
-                   <option value="Cancelada" selected>Cancelada</option>
-               @else
-                   <option value="Cancelada">Cancelada</option>
-               @endif
-           </select>
-           @error('estado')
-               <div style="color:red">{{ $message }}</div>
-           @enderror
-       </div>
+       <input type="hidden" name="tipo_transaccion" id="tipo_transaccion" value="Compra">
+       <input type="hidden" name="estado" id="estado" value="Pendiente">

@@ -12,15 +12,17 @@ class VentaController extends Controller
     //
 
 
-    public function ventaCreate(Comercio $comercio)
+    public function create(Comercio $comercio)
     {
 
-        return view('users.transacciones.create', ['comercio' => $comercio, 'transaccion' => new Transaccion()]);
+        return view('users.ventas.create', ['comercio' => $comercio, 'transaccion' => new Transaccion()]);
     }
 
-    public function ventaStore(Request $request, Transaccion $transaccion, Comercio $comercio)
+    public function store(Request $request, Transaccion $transaccion, Comercio $comercio)
     {
+
         $validated = $request->validate([
+            'comercio_id' => 'required|integer',
             'monedero_id' => 'required|integer',
             'fecha_transaccion' => 'required|date',
             'cantidad' => 'required|numeric',
@@ -28,21 +30,33 @@ class VentaController extends Controller
             'tipo_transaccion' => 'required|string', // 'Compra', 'Recarga', 'Premio'
             'estado' => 'required|string', // 'Pendiente', 'Aprobado', 'Rechazado
         ]);
-        $validated['comercio_id'] = $comercio->id;
+
         $transaccion->create($validated);
 
+
         return to_route('comercio-usuario', $comercio)
-            ->with('success-update', 'Transaccion realizda correctamente');
+            ->with('success-update', 'Transacción realizada correctamente');
     }
 
-    public function ventaShow(Transaccion $transaccion)
+    public function edit(Transaccion $transaccion)
     {
-        return view('users.transacciones.create', ['transaccion' => $transaccion]);
+        return view('users.ventas.edit', ['transaccion' => $transaccion]);
     }
 
-    public function ventaUpdate(Request $request, Transaccion $transaccion, Comercio $comercio)
+    public function index()
+    {
+        return view('users.ventas.index');
+    }
+
+    public function show(Transaccion $transaccion)
+    {
+        return view('users.transacciones.show', ['transacción' => $transaccion]);
+    }
+
+    public function update(Request $request, Transaccion $transaccion, Comercio $comercio)
     {
         $validated = $request->validate([
+            'comercio_id' => 'required|integer', // 'Compra', 'Recarga', 'Premio
             'monedero_id' => 'required|integer',
             'fecha_transaccion' => 'required|date',
             'cantidad' => 'required|numeric',
@@ -54,13 +68,13 @@ class VentaController extends Controller
         $transaccion->update($validated);
 
         return to_route('comercio-usuario', $comercio)
-            ->with('success-update', 'Transaccion actualizada correctamente');
+            ->with('success-update', 'Transacción actualizada correctamente');
     }
 
-    public function ventaDestroy(Transaccion $transaccion, Comercio $comercio)
+    public function destroy(Transaccion $transaccion, Comercio $comercio)
     {
         $transaccion->delete();
         return to_route('comercio-usuario', $comercio)
-            ->with('success-update', 'Transaccion borrada correctamente');
+            ->with('success-update', 'Transacción borrada correctamente');
     }
 }
