@@ -77,9 +77,9 @@
                                     <p class="mb-4 text-grey-600">by Issc</p>
                                     <p
                                         class="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                                        Startup is free Next.js template for startups and SaaS business websites comes
-                                        with all the essential pages, components, and sections you need to launch a
-                                        complete business website, built-with Next 13.x and Tailwind CSS.</p>
+                                        La aplicación wed de monedero virtual que te permite pagar con el dinero de las
+                                        promociones de San Lorenzo de El Escorial en tus tiendas
+                                        favoritas de forma rápida, segura y cómoda.</p>
                                     <div
                                         class="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                                         <a class="inline-block rounded-lg bg-sky-600 px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-black/90"
