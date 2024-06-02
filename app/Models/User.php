@@ -34,7 +34,12 @@ class User extends Authenticatable
 
     public function monedero()
     {
-        return $this->hasOne(Monedero::class)->withDefault('saldo', 0);
+        return $this->hasOne(Monedero::class);
+    }
+
+    public function comercio()
+    {
+        return $this->hasOne(Comercio::class);
     }
 
     public function transacciones()

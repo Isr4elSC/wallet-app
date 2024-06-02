@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Monedero;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Console\Command;
 use Spatie\Permission\Models\Role;
 use Illuminate\Validation\Rules;
 
@@ -132,9 +133,16 @@ class UserController extends Controller
         // $user = User::create($validated);
 
         //asignamos el rol al usuario
-        if ($request->cliente) {
-            $user->assignRole('Cliente');
-        }
+
+        // todo usuario por defecto va a ser cliente y va a tener un monedero
+        $user->assignRole('Cliente');
+        Monedero::create([
+            'saldo' => 100,
+            'user_id' => $user->id,
+        ]);
+        // if ($request->cliente) {
+        //     $user->assignRole('Cliente');
+        // }
         if ($request->comercio) {
             $user->assignRole('Comercio');
         }

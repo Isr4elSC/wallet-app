@@ -4,20 +4,19 @@
         <div class="flex flex-col px-4 pt-6 dark:bg-gray-900">
             {{ Breadcrumbs::render('admin') }}
             <x-flash />
-            <div
-                class="p-4 my-6 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 xl:p-8 dark:bg-gray-800">
-                <div class="flex flex-col w-full">
-                    <header>
-                        <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                            Panel de administración
-                        </h1>
-                    </header>
-                    <main>
-                    </main>
+            <main>
+                <div
+                    class="p-4 my-6 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 xl:p-8 dark:bg-gray-800">
+                    <div class="flex flex-col w-full">
+                        <header>
+                            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+                                Panel de administración
+                            </h1>
+                        </header>
+                    </div>
                 </div>
-            </div>
+            </main>
         </div>
         <x-footer />
-    </div>
     </div>
 </x-layouts.app>

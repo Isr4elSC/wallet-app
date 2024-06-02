@@ -1,29 +1,22 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
+<x-layouts.app title="Panel de administración" header="Panel de administración"
+    meta-description="Panel de administración de la app ISSC-Wallet">
+    <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
+        <div class="flex flex-col px-4 pt-6 dark:bg-gray-900">
+            {{ Breadcrumbs::render('admin') }}
+            <x-flash />
+            <main>
+                <div
+                    class="p-4 my-6 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 xl:p-8 dark:bg-gray-800">
+                    <div class="flex flex-col w-full">
+                        <header>
+                            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+                                Panel de administración
+                            </h1>
+                        </header>
+                    </div>
                 </div>
-            </div>
+            </main>
         </div>
+        <x-footer />
     </div>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ auth()->user()->name }}
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</x-app-layout>
+</x-layouts.app>

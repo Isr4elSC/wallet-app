@@ -20,21 +20,12 @@ Route::get('/', function () {
 
 //ADMINISTRACION
 
-Route::view('/admin', 'admin')->name('admin')->middleware('auth')->middleware('can:admin');
+Route::view('/admin', 'dashboard')->name('admin')->middleware('auth')->middleware('can:admin');
 
 
 //Rutas para la administracion de Usuarios
-// Route::get('/users', [UserController::class, 'index'])->name('users.index');
-// Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
-// Route::get('/users/{user}', [UserController::class, 'show'])->name('user.show');
-// Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
-// Route::patch('/users/{user}', [UserController::class, 'update'])->name('user.update');
-// route::delete('/users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
-// Route::post('/users', [UserController::class, 'store'])->name('user.store');
 Route::resource('/admin/users', UserController::class)
     ->names('users')
-    // ->parameters(['users' => 'user'])
-    // ->except('create', 'store', 'show')
     ->middleware('auth')
     ->middleware('can:manage-users');
 
@@ -64,14 +55,6 @@ Route::get('/admin/comercios/{comercio}/edit', [ComercioController::class, 'edit
 Route::patch('/admin/comercios/{comercio}', [ComercioController::class, 'update'])->name('comercios.update')->middleware('can:manage-comercios');
 route::delete('/admin/comercios/{comercio}', [ComercioController::class, 'destroy'])->name('comercios.destroy')->middleware('auth')->middleware('can:manage-comercios');
 Route::post('/admin/comercios/', [ComercioController::class, 'store'])->name('comercios.store')->middleware('can:manage-comercios');
-// Route::resource('/admin/comercios', ComercioController::class)
-//     ->names('comercios')
-//     ->middleware('auth')
-//     ->middleware('can:manage-comercios');
-
-
-// Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-
 
 //Rutas para la administración de Sorteos
 Route::resource('/admin/sorteos', SorteoController::class)
@@ -87,11 +70,8 @@ Route::resource('/admin/promociones', PromocionController::class)
 
 //Rutas para visualizar el monedero del usuario
 Route::get('/user/monedero/{monedero}', [MonederoController::class, 'acceder'])->name('monedero-usuario')->middleware('auth')->middleware('can:usar-monedero');
-// Route::get('/user/monedero/ingresar', [MonederoController::class, 'ingresar'])->name('monedero.user.ingresar')->middleware('auth'); //->middleware('can:usar-monedero');
 Route::post('/user/monedero/rechazar/{transacccion}', [MonederoController::class, 'rechazarPago'])->name('venta-rechazar')->middleware('auth')->middleware('can:rechazar-compras');
 Route::post('/user/monedero/pagar/{transacccion}', [MonederoController::class, 'aceptarPago'])->name('venta-pagar')->middleware('auth')->middleware('can:realizar-compras');
-//Rutas para visualizar las transacciones del usuario
-// Route::get('/user/transacciones', [TransaccionController::class, 'index'])->name('transacciones.user')->middleware('auth')->middleware('can:usar-transacciones');
 
 //Rutas para visualizar los comercios del usuario
 Route::get('/user/comercio/{comercio}', [ComercioController::class, 'acceder'])->name('comercio-usuario')->middleware('auth')->middleware('can:usar-comercios');
@@ -118,11 +98,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
-//Usuarios
-// Route::resource('users', 'UserController')
-//     ->except('create', 'store', 'show')
-//     ->names('users');
 
 require __DIR__ . '/auth.php';

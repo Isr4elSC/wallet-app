@@ -120,12 +120,12 @@
 
                     <x-slot name="content">
                         @if (Auth::user()->hasRole('Cliente'))
-                            <x-dropdown-link :href="route('monedero-usuario', Auth::user())">
+                            <x-dropdown-link :href="route('monedero-usuario', Auth::user()->monedero->id)">
                                 {{ __('Monedero') }}
                             </x-dropdown-link>
                         @endif
                         @if (Auth::user()->hasRole('Comercio'))
-                            <x-dropdown-link :href="route('comercio-usuario', Auth::user())">
+                            <x-dropdown-link :href="route('comercio-usuario', Auth::user()->comercio->id)">
                                 {{ __('Panel Comercio') }}
                             </x-dropdown-link>
                         @endif
@@ -187,13 +187,13 @@
 
                 @if (Auth::user()->hasRole('Cliente'))
                     {{-- && isset(Auth::user()->monedero) --}}
-                    <x-responsive-nav-link :href="route('monedero-usuario', Auth::user())">
+                    <x-responsive-nav-link :href="route('monedero-usuario', Auth::user()->monedero->id)">
                         {{ __('Monedero') }}
                     </x-responsive-nav-link>
                 @endif
                 @if (Auth::user()->hasRole('Comercio'))
                     {{-- && isset(Auth::user()->comercio) --}}
-                    <x-responsive-nav-link :href="route('comercio-usuario', Auth::user())">
+                    <x-responsive-nav-link :href="route('comercio-usuario', Auth::user()->monedero->id)">
                         {{ __('Panel Comercio') }}
                     </x-responsive-nav-link>
                 @endif
