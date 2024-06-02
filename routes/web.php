@@ -22,6 +22,10 @@ Route::get('/', function () {
 
 Route::view('/admin', 'dashboard')->name('admin')->middleware('auth')->middleware('can:admin');
 
+//Rutas de autenticacion
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 //Rutas para la administracion de Usuarios
 Route::resource('/admin/users', UserController::class)
@@ -86,10 +90,7 @@ Route::post('/user/comercio/{comercio}/ventas/', [VentaController::class, 'store
 Route::delete('/user/comercio/ventas/{venta}', [VentaController::class, 'destroy'])->name('venta-destroy')->middleware('auth')->middleware('can:realizar-ventas');
 
 
-//Rutas de autenticacion
-Route::get('/dashboard', function () {
-    return view('admin');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 
 //Rutas de perfil

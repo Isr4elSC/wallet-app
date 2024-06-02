@@ -13,28 +13,28 @@
                                 Panel de administración
                             </h1>
                         </header>
-                        <div class="flex flex-row gap-3">
-                            <div class="md:w-1/4 p-8">
+                        <div class="flex">
+                            <div class="p-8">
                                 <a href="{{ route('comercios.index') }}"
                                     class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Comercios</a>
                             </div>
-                            <div class="md:w-1/4 p-8">
+                            <div class="p-8">
                                 <a href="{{ route('users.index') }}"
                                     class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Usuarios</a>
                             </div>
-                            <div class="md:w-1/4 p-8">
+                            <div class="p-8">
                                 <a href="{{ route('monederos.index') }}"
                                     class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Monederos</a>
                             </div>
-                            <div class="md:w-1/4 p-8">
+                            <div class="p-8">
                                 <a href="{{ route('transacciones.index') }}"
                                     class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Transacciones</a>
                             </div>
-                            <div class="md:w-1/4 p-8">
+                            <div class="p-8">
                                 <a href="{{ route('promociones.index') }}"
                                     class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Promociones</a>
                             </div>
-                            <div class="md:w-1/4 p-8">
+                            <div class="p-8">
                                 <a href="{{ route('sorteos.index') }}"
                                     class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Sorteos</a>
                             </div>

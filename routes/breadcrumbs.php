@@ -10,7 +10,7 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 Breadcrumbs::for('users.index', function (BreadcrumbTrail $trail): void {
-    $trail->push('Administración', route('admin'));
+    $trail->push('Administración', route('dashboard'));
     $trail->push('Usuarios', route('users.index'));
 });
 
@@ -31,7 +31,7 @@ Breadcrumbs::for('users.create', function (BreadcrumbTrail $trail): void {
 
 
 Breadcrumbs::for('monederos.index', function (BreadcrumbTrail $trail): void {
-    $trail->push('Administración', route('admin'));
+    $trail->push('Administración', route('dashboard'));
     $trail->push('Monederos', route('monederos.index'));
 });
 
@@ -51,7 +51,7 @@ Breadcrumbs::for('monederos.create', function (BreadcrumbTrail $trail): void {
 });
 
 Breadcrumbs::for('transacciones.index', function (BreadcrumbTrail $trail): void {
-    $trail->push('Administración', route('admin'));
+    $trail->push('Administración', route('dashboard'));
     $trail->push('Transacciones', route('transacciones.index'));
 });
 
@@ -71,7 +71,7 @@ Breadcrumbs::for('transacciones.create', function (BreadcrumbTrail $trail): void
 });
 
 Breadcrumbs::for('comercios.index', function (BreadcrumbTrail $trail): void {
-    $trail->push('Administración', route('admin'));
+    $trail->push('Administración', route('dashboard'));
     $trail->push('Comercios', route('comercios.index'));
 });
 
@@ -91,7 +91,7 @@ Breadcrumbs::for('comercios.create', function (BreadcrumbTrail $trail): void {
 });
 
 Breadcrumbs::for('promociones.index', function (BreadcrumbTrail $trail): void {
-    $trail->push('Administración', route('admin'));
+    $trail->push('Administración', route('dashboard'));
     $trail->push('Promociones', route('promociones.index'));
 });
 
@@ -111,7 +111,7 @@ Breadcrumbs::for('promociones.create', function (BreadcrumbTrail $trail): void {
 });
 
 Breadcrumbs::for('sorteos.index', function (BreadcrumbTrail $trail): void {
-    $trail->push('Administración', route('admin'));
+    $trail->push('Administración', route('dashboard'));
     $trail->push('Sorteos', route('sorteos.index'));
 });
 
@@ -131,7 +131,7 @@ Breadcrumbs::for('sorteos.create', function (BreadcrumbTrail $trail): void {
 });
 
 Breadcrumbs::for('admin', function (BreadcrumbTrail $trail): void {
-    $trail->push('Administración', route('admin'));
+    $trail->push('Administración', route('dashboard'));
 });
 
 Breadcrumbs::for('monedero-usuario', function (BreadcrumbTrail $trail, Monedero $monedero): void {
