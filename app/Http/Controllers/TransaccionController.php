@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Transaccion;
+use App\Models\Comercio;
 
 
 class TransaccionController extends Controller
@@ -102,6 +103,8 @@ class TransaccionController extends Controller
         // redirigimos al usuario a la vista index con un mensaje de éxito
         return to_route('transacciones.index')->with('success-create', 'Transaccion creada correctamente');
     }
+
+
 
     // public function obtenerTransaccion($id)
     // {

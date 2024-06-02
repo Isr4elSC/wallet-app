@@ -112,4 +112,11 @@ class ComercioController extends Controller
         return redirect()->route('comercios.index')
             ->with('status', 'Comercio eliminado correctamente');
     }
+
+    // función para acceder a un comercio
+    public function acceder(Comercio $comercio)
+    {
+        // redirigimos a la vista de detalle del comercio
+        return view('users.micomercio.show', ['comercio' => $comercio]);
+    }
 }

@@ -20,6 +20,7 @@
 
                     @foreach ($transacciones as $transaccion)
                         <x-transacciones.fila :transaccion="$transaccion" />
+                        <x-transacciones.acciones-admin :transaccion="$transaccion" />
                     @endforeach
                     <x-transacciones.pie />
                     {{-- {{ $transacciones->links() }} --}}

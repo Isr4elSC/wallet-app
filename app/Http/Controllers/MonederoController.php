@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Monedero;
 use App\Models\Transaccion;
+use App\Models\Comercio;
 use App\Models\User;
 
 class MonederoController extends Controller
@@ -92,7 +93,52 @@ class MonederoController extends Controller
         return redirect()->route('monederos.index')->with('status', 'Monedero eliminado con éxito');
     }
 
+    // funcion para mostrar el monedero de un usuario
+    public function acceder(Monedero $monedero)
+    {
+        // redirigimos a la vista de detalle del monedero
+        return view('users.mimonedero.show', ['monedero' => $monedero]);
+    }
 
+
+    function aceptarPago(int $id)
+    {
+        $transaccion = Transaccion::find($id);
+        $monedero = Monedero::find($transaccion->monedero_id);
+        $comercio = Comercio::find($transaccion->comercio_id);
+
+        if ($transaccion->estado == 'Pendiente') {
+            $transaccion->estado = 'Realizada';
+            $transaccion->update();
+
+            // return var_dump([$transaccion->tipo_transaccion], [$transaccion->estado], [$monedero->saldo], [$transaccion->cantidad]);
+            if (($transaccion->tipo_transaccion == 'Compra') && ($monedero->saldo >= $transaccion->cantidad)) {
+                $monedero->saldo -= $transaccion->cantidad;
+                $comercio->saldo += $transaccion->cantidad;
+                $monedero->update();
+                $comercio->update();
+                return redirect()->route('monedero-usuario', $monedero)->with('status', 'Transacción aceptada');
+            } else {
+                return redirect()->route('monedero-usuario', $monedero)->with('status', 'Sin saldo suficiente');
+            }
+        }
+        return redirect()->route('monedero-usuario', $monedero)->with('status', 'No se puede realizar la operación. La transacción esta ' . $transaccion->estado);
+    }
+
+    function rechazarPago(int $id)
+    {
+        $transaccion = Transaccion::find($id);
+        if ($transaccion->estado == 'Pendiente') {
+            $transaccion->estado = 'Cancelada';
+            $transaccion->update();
+            return redirect()->route('monedero-usuario', $transaccion->monedero)->with('status', 'Transacción rechazada');
+        } else {
+            return redirect()->route(
+                'monedero-usuario',
+                $transaccion->monedero
+            )->with('status', 'No se puede rechazar la operación. La transacción esta ' . $transaccion->estado);
+        }
+    }
 
     // public function obtenerSaldo($id)
     // {
