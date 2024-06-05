@@ -18,12 +18,12 @@ class Monedero extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
 
     public function transacciones()
     {
-        return $this->hasMany(Transaccion::class, 'monedero_id', 'id');
+        return $this->hasMany(Transaccion::class);
     }
 }

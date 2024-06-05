@@ -1,4 +1,4 @@
-<x-layouts.app :title="'Usuario ' . $comercio->nombre" :meta-description="'informacion del uduario ' . $comercio->nombre">
+<x-layouts.app :title="'Usuario ' . $comercio->nombre" :meta-description="'informacion del comercio ' . $comercio->nombre">
     <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
         <div class="flex flex-col px-4 pt-6 dark:bg-gray-900">
             {{ Breadcrumbs::render('comercio-usuario', $comercio) }}

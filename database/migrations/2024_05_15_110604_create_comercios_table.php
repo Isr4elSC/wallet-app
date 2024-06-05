@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('comercios', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->unique();
             $table->string('nombre');
             $table->string('nif')->unique();
             $table->string('direccion');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->decimal('saldo', 10, 2)->default(0);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

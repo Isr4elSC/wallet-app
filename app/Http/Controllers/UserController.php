@@ -161,13 +161,14 @@ class UserController extends Controller
     }
 
     // función para asignar un rol a un usuario
-    public function setrole(Request $request, User $user)
-    {
-        $validated = $request->validate([
-            'role' => 'required',
-        ]);
-        $user->roles()->sync($request->role);
-        return redirect()->route('users.edit', $user)
-            ->with('success-update', 'Rol establecido correctamente');
-    }
+    // public function setrole(Request $request, User $user)
+    // {
+    //     $validated = $request->validate([
+    //         'role' => 'required',
+    //     ]);
+    //     $user->roles()->sync($request->role);
+    //     return redirect()->route('users.edit', $user)
+    //         ->with('success-update', 'Rol establecido correctamente');
+    // }
+
 }

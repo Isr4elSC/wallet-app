@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('monederos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->index();
+            $table->bigInteger('user_id')->unsigned()->unique();
             $table->decimal('saldo', 8, 2);
             // $table->string('tipo');
             // $table->string('estado');
@@ -23,7 +23,7 @@ return new class extends Migration
             // $table->string('comentario');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -2,7 +2,7 @@
     meta-description="Panel de administración de la app ISSC-Wallet">
     <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
         <div class="flex flex-col px-4 pt-6 dark:bg-gray-900">
-            {{ Breadcrumbs::render('admin') }}
+            {{ Breadcrumbs::render('profile.edit') }}
             <x-flash />
             <main>
                 <div

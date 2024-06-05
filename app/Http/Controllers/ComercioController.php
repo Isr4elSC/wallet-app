@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comercio;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class ComercioController extends Controller
 {
@@ -114,9 +115,10 @@ class ComercioController extends Controller
     }
 
     // función para acceder a un comercio
-    public function acceder(Comercio $comercio)
+    public function acceder()
     {
         // redirigimos a la vista de detalle del comercio
-        return view('users.micomercio.show', ['comercio' => $comercio]);
+        return var_dump(auth()->user());
+        return view('users.micomercio.show', ['comercio' => auth()->user()->comercio]);
     }
 }

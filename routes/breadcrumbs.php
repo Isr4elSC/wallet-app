@@ -146,3 +146,7 @@ Breadcrumbs::for('venta-create', function (BreadcrumbTrail $trail, Comercio $com
     $trail->parent('comercio-usuario', $comercio);
     $trail->push('realizar venta', route('venta-create', $comercio));
 });
+
+Breadcrumbs::for('profile.edit', function (BreadcrumbTrail $trail): void {
+    $trail->push('Editar perfil', route('profile.edit'));
+});

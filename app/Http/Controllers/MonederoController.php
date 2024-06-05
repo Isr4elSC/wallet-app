@@ -94,10 +94,9 @@ class MonederoController extends Controller
     }
 
     // funcion para mostrar el monedero de un usuario
-    public function acceder(Monedero $monedero)
+    public function acceder()
     {
-        // redirigimos a la vista de detalle del monedero
-        return view('users.mimonedero.show', ['monedero' => $monedero]);
+        return view('users.mimonedero.show', ['monedero' => auth()->user()->monedero]);
     }
 
 
