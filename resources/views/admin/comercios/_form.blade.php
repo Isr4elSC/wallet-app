@@ -116,7 +116,7 @@
            <input
                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
                type="number" name="saldo" id="saldo" value="{{ old('saldo', $comercio->saldo) }}"
-               placeholder="00,00" required>
+               placeholder="00,00 €" required>
            @error('saldo')
                <div style="color:red">{{ $message }}</div>
            @enderror

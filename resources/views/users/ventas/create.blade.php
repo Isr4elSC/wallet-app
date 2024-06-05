@@ -2,7 +2,7 @@
     meta-description="Panel de administración de la app ISSC-Wallet">
     <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
         <div class="flex flex-col px-4 pt-6 dark:bg-gray-900">
-            {{ Breadcrumbs::render('venta-create', $comercio) }}
+            {{ Breadcrumbs::render('venta.create', $comercio) }}
             <x-flash />
             <div
                 class="p-4 my-6 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 xl:p-8 dark:bg-gray-800">
@@ -13,7 +13,7 @@
                         </h2>
                     </header>
                     <main>
-                        <form action="{{ route('venta-store', $comercio) }}" method="POST" class="mt-8 space-y-6">
+                        <form action="{{ route('venta.store', $comercio) }}" method="POST" class="mt-8 space-y-6">
                             @csrf
                             @method('POST')
                             @include('users.ventas._form')

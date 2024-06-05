@@ -134,17 +134,17 @@ Breadcrumbs::for('admin', function (BreadcrumbTrail $trail): void {
     $trail->push('Administración', route('dashboard'));
 });
 
-Breadcrumbs::for('monedero-usuario', function (BreadcrumbTrail $trail, Monedero $monedero): void {
-    $trail->push('Monedero', route('monedero-usuario', $monedero));
+Breadcrumbs::for('monedero.usuario', function (BreadcrumbTrail $trail, Monedero $monedero): void {
+    $trail->push('Monedero', route('monedero.usuario', $monedero));
 });
 
-Breadcrumbs::for('comercio-usuario', function (BreadcrumbTrail $trail, Comercio $comercio): void {
-    $trail->push('Comercio', route('comercio-usuario', $comercio));
+Breadcrumbs::for('comercio.usuario', function (BreadcrumbTrail $trail, Comercio $comercio): void {
+    $trail->push('Comercio', route('comercio.usuario', $comercio));
 });
 
-Breadcrumbs::for('venta-create', function (BreadcrumbTrail $trail, Comercio $comercio): void {
+Breadcrumbs::for('venta.create', function (BreadcrumbTrail $trail, Comercio $comercio): void {
     $trail->parent('comercio-usuario', $comercio);
-    $trail->push('realizar venta', route('venta-create', $comercio));
+    $trail->push('realizar venta', route('venta.create', $comercio));
 });
 
 Breadcrumbs::for('profile.edit', function (BreadcrumbTrail $trail): void {

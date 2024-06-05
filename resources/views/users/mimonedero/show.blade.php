@@ -1,7 +1,11 @@
+@auth
+    $monedero = auth()->user()->monedero;
+@endauth
+
 <x-layouts.app :title="'Monedero nº ' . $monedero->id" :header="'Monedero nº ' . $monedero->id" :meta-description="'informacion del monedero ' . $monedero->id">
     <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
         <div class="flex flex-col px-4 pt-6 dark:bg-gray-900">
-            {{ Breadcrumbs::render('monedero-usuario', $monedero) }}
+            {{ Breadcrumbs::render('monedero.usuario', $monedero) }}
             <x-flash />
             <div
                 class="p-4 my-6 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 xl:p-8 dark:bg-gray-800">

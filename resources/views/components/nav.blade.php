@@ -62,21 +62,17 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        @if (Auth::user()->hasRole('Cliente'))
-                            <x-dropdown-link :href="route('monedero-usuario')">
-                                {{ __('Monedero') }}
-                            </x-dropdown-link>
-                        @endif
-                        @if (Auth::user()->hasRole('Comercio'))
-                            <x-dropdown-link :href="route('comercio-usuario')">
-                                {{ __('Panel Comercio') }}
-                            </x-dropdown-link>
-                        @endif
                         @if (Auth::user()->hasRole('Administrador'))
                             <x-dropdown-link :href="route('dashboard')">
                                 {{ __('Panel de Administración') }}
                             </x-dropdown-link>
                         @endif
+                        <x-dropdown-link :href="route('monedero.usuario')">
+                            {{ __('Monedero') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('comercio.usuario')">
+                            {{ __('Panel Comercio') }}
+                        </x-dropdown-link>
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Editar Perfil') }}
                         </x-dropdown-link>
@@ -127,28 +123,20 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                @if (Auth::user()->hasRole('Cliente'))
-                    {{-- && isset(Auth::user()->monedero) --}}
-                    <x-responsive-nav-link :href="route('monedero-usuario')">
-                        {{ __('Monedero') }}
-                    </x-responsive-nav-link>
-                @endif
-                @if (Auth::user()->hasRole('Comercio'))
-                    {{-- && isset(Auth::user()->comercio) --}}
-                    <x-responsive-nav-link :href="route('comercio-usuario')">
-                        {{ __('Panel Comercio') }}
-                    </x-responsive-nav-link>
-                @endif
                 @if (Auth::user()->hasRole('Administrador'))
                     <x-responsive-nav-link :href="route('dashboard')">
                         {{ __('Panel de Administración') }}
                     </x-responsive-nav-link>
                 @endif
-                @if (Auth::user()->hasRole('Administrador'))
-                    <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Editar Perfil') }}
-                    </x-responsive-nav-link>
-                @endif
+                <x-responsive-nav-link :href="route('monedero.usuario')">
+                    {{ __('Monedero') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('comercio.usuario')">
+                    {{ __('Panel Comercio') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('profile.edit')">
+                    {{ __('Editar Perfil') }}
+                </x-responsive-nav-link>
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

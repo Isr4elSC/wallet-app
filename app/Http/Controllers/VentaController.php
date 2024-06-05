@@ -14,8 +14,8 @@ class VentaController extends Controller
 
     public function create(Comercio $comercio)
     {
-
-        return view('users.ventas.create', ['comercio' => $comercio, 'transaccion' => new Transaccion()]);
+$fecha = $carbon->now();
+        return view('users.ventas.create', ['comercio' => $comercio, 'transaccion' => new Transaccion(),'fecha'->$fecha]);
     }
 
     public function store(Request $request, Transaccion $transaccion, Comercio $comercio)

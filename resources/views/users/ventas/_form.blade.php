@@ -1,5 +1,6 @@
        @php
            $monederos = App\Models\Monedero::all();
+           
            if (isset($fecha)) {
                $fecha = date('Y-m-d', strtotime($fecha));
            } else {

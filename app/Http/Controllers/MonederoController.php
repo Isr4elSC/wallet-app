@@ -8,6 +8,7 @@ use App\Models\Monedero;
 use App\Models\Transaccion;
 use App\Models\Comercio;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class MonederoController extends Controller
 {
@@ -52,8 +53,6 @@ class MonederoController extends Controller
     // funcion para mostrar los datos de un monedero
     public function show(Monedero $monedero)
     {
-        // $monedero = Monedero::find($monedero);
-
         // rediriimos a la vista de detalle del monedero
         return view('admin.monederos.show', ['monedero' => $monedero]);
     }
@@ -96,7 +95,10 @@ class MonederoController extends Controller
     // funcion para mostrar el monedero de un usuario
     public function acceder()
     {
-        return view('users.mimonedero.show', ['monedero' => auth()->user()->monedero]);
+        $user = Auth::user();
+        // $monedero = Monedero::where('user_id', $user->id)->first();
+        // redirigimos a la vista de detalle del monedero
+        return view('users.mimonedero.show', ['monedero' => $user->monedero]);
     }
 
 
@@ -110,7 +112,6 @@ class MonederoController extends Controller
             $transaccion->estado = 'Realizada';
             $transaccion->update();
 
-            // return var_dump([$transaccion->tipo_transaccion], [$transaccion->estado], [$monedero->saldo], [$transaccion->cantidad]);
             if (($transaccion->tipo_transaccion == 'Compra') && ($monedero->saldo >= $transaccion->cantidad)) {
                 $monedero->saldo -= $transaccion->cantidad;
                 $comercio->saldo += $transaccion->cantidad;
@@ -138,60 +139,4 @@ class MonederoController extends Controller
             )->with('status', 'No se puede rechazar la operación. La transacción esta ' . $transaccion->estado);
         }
     }
-
-    // public function obtenerSaldo($id)
-    // {
-    //     $monedero = Monedero::where('user_id', $id)->first();
-    //     return response()->json($monedero);
-    // }
-
-    // public function monederoUser($user_id)
-    // {
-    //     $monederos = Monedero::where('user_id', $user_id)->get();
-    //     return view('monedero.index', ['monederos' => $monederos]);
-    // }
-
-    // public function ActualizarSaldo(Request $request)
-    // {
-    //     $datos = $request->validate([
-    //         'id_usuario' => 'required|integer',
-    //         'saldo' => 'required|numeric'
-    //     ]);
-
-    //     $monedero = Monedero::where('id_usuario', $datos['id_usuario'])->first();
-    //     $monedero->saldo = $datos['saldo'];
-    //     $monedero->save();
-
-    //     return response()->json($monedero);
-    // }
-    // public function crearMonedero(Request $request)
-    // {
-    //     $datos = $request->validate([
-    //         'id_usuario' => 'required|integer',
-    //         'saldo' => 'required|numeric'
-    //     ]);
-
-    //     $monedero = Monedero::create($datos);
-
-    //     return response()->json($monedero);
-    // }
-
-    // public function registrarTransaccion(Request $request)
-    // {
-    //     $datos = $request->validate([
-    //         'id_monedero' => 'required|integer',
-    //         'cantidad' => 'required|numeric',
-    //         'tipo' => 'required|string|in:deposito,retiro'
-    //     ]);
-
-    //     $monedero = Monedero::find($datos['id_monedero']);
-    //     if ($datos['tipo'] == 'deposito') {
-    //         $monedero->saldo += $datos['monto'];
-    //     } else {
-    //         $monedero->saldo -= $datos['monto'];
-    //     }
-    //     $monedero->save();
-
-    //     return response()->json($monedero);
-    // }
 }

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Notifications\WelcomeEmail;
+use App\Models\Monedero;
 
 class RegisteredUserController extends Controller
 {
@@ -42,7 +43,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
         $user->assignRole('Cliente');
-
+        Monedero::create(['user_id' => $user->id, 'saldo' => 100]);
         $user->notify(new WelcomeEmail($user));
 
         event(new Registered($user));

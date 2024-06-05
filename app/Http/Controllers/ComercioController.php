@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comercio;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Validation\Rules;
 
 class ComercioController extends Controller
 {
@@ -32,7 +33,7 @@ class ComercioController extends Controller
     // función para crear un nuevo comercio
     public function create()
     {
-
+        // redirigimos a la vista de creación de comercio
         return view('admin.comercios.create', ['comercio' => new Comercio()]);
     }
 
@@ -117,8 +118,43 @@ class ComercioController extends Controller
     // función para acceder a un comercio
     public function acceder()
     {
+        $user = USer::find(Auth::user()->id);
+
         // redirigimos a la vista de detalle del comercio
-        return var_dump(auth()->user());
-        return view('users.micomercio.show', ['comercio' => auth()->user()->comercio]);
+        if (is_null($user->comercio)) {
+            return view('users.micomercio.create', ['comercio' => new Comercio()]);
+        }
+        return view('users.micomercio.show', ['comercio' => $user->comercio]);
+    }
+
+    public function crearComercio(Request $request)
+    {
+        $user = Auth::user();
+        $validated = $request->validate([
+            // 'user_id'  => 'required',
+            'nombre' => 'required',
+            'nif' => 'required',
+            'direccion' => 'required',
+            'poblacion' => 'required',
+            'provincia' => 'required',
+            'cp' => 'required|numeric|digits:5',
+            'telefono' => 'required|numeric|digits:9|starts_with:6,7,9',
+            'email' => 'required|email',
+            'web' => 'nullable|url',
+            'logo' => 'nullable|url',
+            // 'saldo' => 'required|numeric',
+        ]);
+
+        $validated['user_id'] = $user->id;
+        $validated['saldo'] = 0;
+
+        // almacenamos el comercio en la base de datos
+        $comercio = Comercio::create($validated);
+        // asignamos el rol de comercio al usuario
+        $comercio->user->assignRole('Comercio');
+
+        // redirigimos al usuario con un mensaje de éxito
+        return to_route('comercio-usuario', $comercio)
+            ->with('status', 'Comercio creado correctamente');
     }
 }
