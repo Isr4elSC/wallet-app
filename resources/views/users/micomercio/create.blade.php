@@ -1,7 +1,8 @@
-<x-layouts.app header="Nuevo Comercio" title="Creación de Comercio" meta-description="formulario de creación de comercio">
+<x-layouts.app title="Nuevo Comercio" header="Nuevo Comercio" title="Creación de Comercio"
+    meta-description="formulario de creación de comercio">
     <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
         <div class="flex flex-col px-4 pt-6 dark:bg-gray-900">
-            {{-- {{ Breadcrumbs::render('comercio.usuario') }} --}}
+            {{ Breadcrumbs::render('comercio.usuario') }}
             <x-flash />
             <div
                 class="p-4 my-6 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 xl:p-8 dark:bg-gray-800">

@@ -1,7 +1,7 @@
 <x-layouts.app :title="'Comercio ' . $comercio->nombre" :meta-description="'informacion del comercio ' . $comercio->nombre">
     <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
         <div class="flex flex-col px-4 pt-6 dark:bg-gray-900">
-            {{ Breadcrumbs::render('comercio-usuario', $comercio) }}
+            {{ Breadcrumbs::render('comercio.usuario', $comercio) }}
             <x-flash />
 
             <div

@@ -138,8 +138,8 @@ Breadcrumbs::for('monedero.usuario', function (BreadcrumbTrail $trail, Monedero 
     $trail->push('Monedero', route('monedero.usuario', $monedero));
 });
 
-Breadcrumbs::for('comercio.usuario', function (BreadcrumbTrail $trail, Comercio $comercio): void {
-    $trail->push('Comercio', route('comercio.usuario', $comercio));
+Breadcrumbs::for('comercio.usuario', function (BreadcrumbTrail $trail): void {
+    $trail->push('Comercio', route('comercio.usuario'));
 });
 
 Breadcrumbs::for('venta.create', function (BreadcrumbTrail $trail, Comercio $comercio): void {

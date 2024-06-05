@@ -118,13 +118,15 @@ class ComercioController extends Controller
     // función para acceder a un comercio
     public function acceder()
     {
-        $user = USer::find(Auth::user()->id);
-
+        // $comercio = Comercio::find(Auth::user()->user_id);
+        $comercio = Auth::user()->comercio;
         // redirigimos a la vista de detalle del comercio
-        if (is_null($user->comercio)) {
+        if (is_null($comercio)) {
+            // return printf('comercio es null');
             return view('users.micomercio.create', ['comercio' => new Comercio()]);
         }
-        return view('users.micomercio.show', ['comercio' => $user->comercio]);
+        // return printf('comercio no es null');
+        return view('users.micomercio.show', ['comercio' => $comercio]);
     }
 
     public function crearComercio(Request $request)
@@ -145,16 +147,16 @@ class ComercioController extends Controller
             // 'saldo' => 'required|numeric',
         ]);
 
+
         $validated['user_id'] = $user->id;
         $validated['saldo'] = 0;
-
         // almacenamos el comercio en la base de datos
         $comercio = Comercio::create($validated);
         // asignamos el rol de comercio al usuario
         $comercio->user->assignRole('Comercio');
 
         // redirigimos al usuario con un mensaje de éxito
-        return to_route('comercio-usuario', $comercio)
+        return to_route('comercio.usuario', $comercio)
             ->with('status', 'Comercio creado correctamente');
     }
 }
