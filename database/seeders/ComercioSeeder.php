@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Comercio;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class ComercioSeeder extends Seeder
 {
@@ -13,7 +14,13 @@ class ComercioSeeder extends Seeder
      */
     public function run(): void
     {
+        $usuarios = User::all();
         //
-        Comercio::factory(10)->create();
+        foreach ($usuarios as $usuario) {
+            if (rand(0, 1) == 1)
+                Comercio::factory()->create([
+                    'user_id' => $usuario->id,
+                ]);
+        }
     }
 }

@@ -49,10 +49,38 @@
                 </div>
             @endif
         </div>
-
+        <div>
+            <x-input-label for="apellidos" :value="__('Apellidos')" />
+            <x-text-input id="apellidos" name="apellidos" type="text" class="mt-1 block w-full" :value="old('apellidos', $user->apellidos)"
+                autofocus autocomplete="Apellidos" />
+            <x-input-error class="mt-2" :messages="$errors->get('apellidos')" />
+        </div>
+        <div>
+            <x-input-label for="dni" :value="__('DNI')" />
+            <x-text-input id="dni" name="dni" type="text" class="mt-1 block w-full" :value="old('dni', $user->dni)"
+                autofocus autocomplete="DNI" />
+            <x-input-error class="mt-2" :messages="$errors->get('dni')" />
+        </div>
+        <div>
+            <x-input-label for="telefono" :value="__('Telefono')" />
+            <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full" :value="old('telefono', $user->telefono)"
+                autofocus autocomplete="telefono" />
+            <x-input-error class="mt-2" :messages="$errors->get('telefono')" />
+        </div>
+        <div>
+            <x-input-label for="direccion" :value="__('Dirección')" />
+            <x-text-input id="direccion" name="direccion" type="text" class="mt-1 block w-full" :value="old('direccion', $user->direccion)"
+                autofocus autocomplete="direccion" />
+            <x-input-error class="mt-2" :messages="$errors->get('direccion')" />
+        </div>
+        <div>
+            <x-input-label for="fecha_nacimiento" :value="__('Fecha de Nacimiento')" />
+            <x-text-input id="fecha_nacimiento" name="fecha_nacimiento" type="text" class="mt-1 block w-full"
+                :value="old('fecha_nacimiento', $user->fecha_nacimiento)" autofocus autocomplete="fecha_nacimiento" />
+            <x-input-error class="mt-2" :messages="$errors->get('fecha_nacimiento')" />
+        </div>
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
-
             @if (session('status') === 'profile-updated')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600 dark:text-gray-400">{{ __('Saved.') }}</p>

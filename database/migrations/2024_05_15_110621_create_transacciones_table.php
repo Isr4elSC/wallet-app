@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transacciones', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('monedero_id')->unsigned()->index();
-            $table->bigInteger('comercio_id')->unsigned()->index();
+            $table->id()->unique()->index();
+            $table->bigInteger('monedero_id')->unsigned();
+            $table->bigInteger('comercio_id')->unsigned();
 
             $table->dateTime('fecha_transaccion');
             $table->decimal('cantidad', 10, 2);

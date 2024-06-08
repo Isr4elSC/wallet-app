@@ -22,9 +22,11 @@ class DatabaseSeeder extends Seeder
         //Llamamos el seeder de usuarios
         $this->call(UserSeeder::class);
         // User::factory(20)->create();
-        Comercio::factory(10)->create();
-        Monedero::factory(10)->create();
-        Transaccion::factory(50)->create();
+        // Comercio::factory(10)->create();
+        $this->call(ComercioSeeder::class);
+        // Monedero::factory(10)->create();
+        $this->call(TransaccionSeeder::class);
+        // Transaccion::factory(50)->create();
 
 
 
