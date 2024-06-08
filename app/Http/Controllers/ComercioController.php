@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comercio;
+use App\Models\Transaccion;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
@@ -120,13 +121,24 @@ class ComercioController extends Controller
     {
         // $comercio = Comercio::find(Auth::user()->user_id);
         $comercio = Auth::user()->comercio;
-        // redirigimos a la vista de detalle del comercio
         if (is_null($comercio)) {
             // return printf('comercio es null');
-            return view('users.micomercio.create', ['comercio' => new Comercio()]);
+            return view('users.micomercio.iniciar');
+            // return view('users.micomercio.create', ['comercio' => new Comercio()]);
         }
+        $transacciones = Transaccion::where('comercio_id', $comercio->id)
+            ->orderBy('fecha_transaccion', 'asc')
+            ->orderBy('id', 'desc')
+            ->get();
+        // redirigimos a la vista de detalle del comercio
         // return printf('comercio no es null');
-        return view('users.micomercio.show', ['comercio' => $comercio]);
+        return view('users.micomercio.show', ['comercio' => $comercio], ['transacciones' => $transacciones]);
+    }
+
+    // función para iniciar un comercio
+    public function iniciar()
+    {
+        return view('users.micomercio.create', ['comercio' => new Comercio()]);
     }
 
     public function crearComercio(Request $request)

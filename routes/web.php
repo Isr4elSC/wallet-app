@@ -73,26 +73,24 @@ Route::resource('/admin/promociones', PromocionController::class)
     ->middleware('can:manage-promociones');
 
 //Rutas para visualizar el monedero del usuario
-Route::get('/user/monedero/', [MonederoController::class, 'acceder'])->name('monedero.usuario')->middleware('auth'); //->middleware('can:usar-monedero');
-Route::post('/user/monedero/rechazar/{transacccion}', [MonederoController::class, 'rechazarPago'])->name('venta-rechazar')->middleware('auth')->middleware('can:rechazar-compras');
-Route::post('/user/monedero/pagar/{transacccion}', [MonederoController::class, 'aceptarPago'])->name('venta-pagar')->middleware('auth')->middleware('can:realizar-compras');
+Route::get('/user/monedero/', [MonederoController::class, 'acceder'])->name('monedero.usuario')->middleware('auth')->middleware('can:usar-monedero');
+Route::patch('/user/monedero/rechazar/', [MonederoController::class, 'rechazarPago'])->name('venta.rechazar')->middleware('auth')->middleware('can:rechazar-compras');
+Route::patch('/user/monedero/pagar/', [MonederoController::class, 'aceptarPago'])->name('venta.pagar')->middleware('auth')->middleware('can:realizar-compras');
 
 //Rutas para visualizar los comercios del usuario
-Route::get('/user/comercio/', [ComercioController::class, 'acceder'])->name('comercio.usuario')->middleware('auth'); //->middleware('can:usar-comercios');
-Route::post('/user/comercio/', [ComercioController::class, 'crearComercio'])->name('micomercio-store')->middleware('auth'); //->middleware('can:usar-comercios');
+Route::get('/user/comercio/', [ComercioController::class, 'acceder'])->name('comercio.usuario')->middleware('auth')->middleware('can:usar-comercios');
+Route::get('/user/comercio/nuevo', [ComercioController::class, 'iniciar'])->name('comercio.iniciar')->middleware('auth')->middleware('can:usar-comercios');
+Route::post('/user/comercio/edit', [ComercioController::class, 'crearComercio'])->name('comercio.create')->middleware('auth')->middleware('can:usar-comercios');
+Route::post('/user/comercio/', [ComercioController::class, 'crearComercio'])->name('comercio.store')->middleware('auth')->middleware('can:usar-comercios');
 
-//Rutas para visualizar las ventas del usuario
-Route::get('/user/comercio/ventas/', [VentaController::class, 'index'])->name('venta.index')->middleware('auth')->middleware('can:realizar-ventas');
-Route::get('/user/comercio/{comercio}/ventas/create/', [VentaController::class, 'create'])->name('venta-create')->middleware('auth')->middleware('can:realizar-ventas');
-Route::get('/user/comercio/ventas/{venta}', [VentaController::class, 'show'])->name('venta.show')->middleware('auth')->middleware('can:realizar-ventas');
-Route::get('/user/comercio/ventas/{venta}/edit', [VentaController::class, 'edit'])->name('venta.edit')->middleware('auth')->middleware('can:realizar-ventas');
-Route::patch('/user/comercio/ventas/{venta}', [VentaController::class, 'update'])->name('venta.update')->middleware('auth')->middleware('can:realizar-ventas');
-Route::post('/user/comercio/{comercio}/ventas/', [VentaController::class, 'store'])->name('venta.store')->middleware('auth')->middleware('can:realizar-ventas');
-Route::delete('/user/comercio/ventas/{venta}', [VentaController::class, 'destroy'])->name('venta.destroy')->middleware('auth')->middleware('can:realizar-ventas');
-
-
-
-
+//Rutas para visualizar las ventas del comercio
+Route::get('/user/comercio/ventas/', [VentaController::class, 'index'])->name('ventas.index')->middleware('auth')->middleware('can:realizar-ventas');
+Route::get('/user/comercio/ventas/nueva-venta/', [VentaController::class, 'create'])->name('ventas.create')->middleware('auth')->middleware('can:realizar-ventas');
+Route::get('/user/comercio/ventas/{venta}', [VentaController::class, 'show'])->name('ventas.show')->middleware('auth')->middleware('can:realizar-ventas');
+Route::get('/user/comercio/ventas/{venta}/editar', [VentaController::class, 'edit'])->name('ventas.edit')->middleware('auth')->middleware('can:realizar-ventas');
+Route::patch('/user/comercio/ventas/{venta}', [VentaController::class, 'update'])->name('ventas.update')->middleware('auth')->middleware('can:realizar-ventas');
+Route::post('/user/comercio/ventas/', [VentaController::class, 'store'])->name('ventas.store')->middleware('auth')->middleware('can:realizar-ventas');
+Route::delete('/user/comercio/ventas/{venta}', [VentaController::class, 'destroy'])->name('ventas.destroy')->middleware('auth')->middleware('can:realizar-ventas');
 
 //Rutas de perfil
 Route::middleware('auth')->group(function () {

@@ -51,8 +51,10 @@ class MonederoController extends Controller
     }
 
     // funcion para mostrar los datos de un monedero
-    public function show(Monedero $monedero)
+    public function show()
     {
+        $monedero = Auth::user()->monedero;
+        // $monedero = auth()->user()->monedero;
         // rediriimos a la vista de detalle del monedero
         return view('admin.monederos.show', ['monedero' => $monedero]);
     }
@@ -88,23 +90,33 @@ class MonederoController extends Controller
     {
         // eliminamos el monedero
         $monedero->delete();
+
+        // eliminamos el usuario asociado al monedero
+        $monedero->user->delete();
+
         // redirigimos al usuario con un mensaje de éxito
-        return redirect()->route('monederos.index')->with('status', 'Monedero eliminado con éxito');
+        return redirect()->route('monederos.index')->with('status', 'Usuario y monedero eliminados con éxito');
     }
 
     // funcion para mostrar el monedero de un usuario
     public function acceder()
     {
         $user = Auth::user();
+        $transacciones = Transaccion::where('monedero_id', $user->monedero->id)
+            ->orderBy('fecha_transaccion', 'desc')
+            ->orderBy('id', 'desc')
+            ->get(); //->paginate(10);
+
         // $monedero = Monedero::where('user_id', $user->id)->first();
         // redirigimos a la vista de detalle del monedero
-        return view('users.mimonedero.show', ['monedero' => $user->monedero]);
+        return view('users.mimonedero.show', ['monedero' => $user->monedero], ['transacciones' => $transacciones]);
     }
 
 
-    function aceptarPago(int $id)
+    function aceptarPago(Request $request)
     {
-        $transaccion = Transaccion::find($id);
+        $transaccion = Transaccion::find($request->transaccion_id);
+        // $transaccion = Transaccion::find($id);
         $monedero = Monedero::find($transaccion->monedero_id);
         $comercio = Comercio::find($transaccion->comercio_id);
 
@@ -117,26 +129,28 @@ class MonederoController extends Controller
                 $comercio->saldo += $transaccion->cantidad;
                 $monedero->update();
                 $comercio->update();
-                return redirect()->route('monedero-usuario', $monedero)->with('status', 'Transacción aceptada');
+                // notificar al email del comercio de la transacción realizada
+
+                return redirect()->route('monedero.usuario')->with('status', 'Transacción aceptada');
             } else {
-                return redirect()->route('monedero-usuario', $monedero)->with('status', 'Sin saldo suficiente');
+                return redirect()->route('monedero.usuario')->with('status', 'Sin saldo suficiente');
             }
         }
-        return redirect()->route('monedero-usuario', $monedero)->with('status', 'No se puede realizar la operación. La transacción esta ' . $transaccion->estado);
+        return redirect()->route('monedero.usuario')->with('status', 'No se puede realizar la operación. La transacción esta ' . $transaccion->estado);
     }
 
-    function rechazarPago(int $id)
+    function rechazarPago(Request $request)
     {
-        $transaccion = Transaccion::find($id);
+        $transaccion = Transaccion::find($request->transaccion_id);
+
+        // $transaccion = Transaccion::find($id);
         if ($transaccion->estado == 'Pendiente') {
             $transaccion->estado = 'Cancelada';
             $transaccion->update();
-            return redirect()->route('monedero-usuario', $transaccion->monedero)->with('status', 'Transacción rechazada');
+            // notificar al email comercio de la cancelación de la transacción
+            return redirect()->route('monedero.usuario')->with('status', 'Transacción rechazada');
         } else {
-            return redirect()->route(
-                'monedero-usuario',
-                $transaccion->monedero
-            )->with('status', 'No se puede rechazar la operación. La transacción esta ' . $transaccion->estado);
+            return redirect()->route('monedero.usuario')->with('status', 'No se puede rechazar la operación. La transacción esta ' . $transaccion->estado);
         }
     }
 }

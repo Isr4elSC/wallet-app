@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaccion;
 use App\Models\Comercio;
-
+use App\Notifications\NotificacionCompra;
+use App\Models\Monedero;
 
 class VentaController extends Controller
 {
@@ -14,8 +15,9 @@ class VentaController extends Controller
 
     public function create(Comercio $comercio)
     {
-$fecha = $carbon->now();
-        return view('users.ventas.create', ['comercio' => $comercio, 'transaccion' => new Transaccion(),'fecha'->$fecha]);
+        // recuperamos la fecha actual
+        $fecha = new \Carbon\Carbon();
+        return view('users.ventas.create', ['comercio' => $comercio, 'transaccion' => new Transaccion(), 'fecha' => $fecha]);
     }
 
     public function store(Request $request, Transaccion $transaccion, Comercio $comercio)
@@ -33,8 +35,12 @@ $fecha = $carbon->now();
 
         $transaccion->create($validated);
 
+        // $monedero = Monedero::get('monedero_id', $validated['monedero_id']);
+        // $user = $monedero->user;
 
-        return to_route('comercio-usuario', $comercio)
+        // $user->notify(new NotificacionCompra($user));
+
+        return to_route('comercio.usuario', $comercio)
             ->with('success-update', 'Transacción realizada correctamente');
     }
 
@@ -67,7 +73,7 @@ $fecha = $carbon->now();
         $validated['comercio_id'] = $comercio->id;
         $transaccion->update($validated);
 
-        return to_route('comercio-usuario', $comercio)
+        return to_route('comercio.usuario', $comercio)
             ->with('success-update', 'Transacción actualizada correctamente');
     }
 
