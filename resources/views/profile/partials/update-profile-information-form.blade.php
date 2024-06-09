@@ -49,7 +49,7 @@
                 </div>
             @endif
         </div>
-        <div>
+        {{-- <div>
             <x-input-label for="apellidos" :value="__('Apellidos')" />
             <x-text-input id="apellidos" name="apellidos" type="text" class="mt-1 block w-full" :value="old('apellidos', $user->apellidos)"
                 autofocus autocomplete="Apellidos" />
@@ -78,7 +78,7 @@
             <x-text-input id="fecha_nacimiento" name="fecha_nacimiento" type="text" class="mt-1 block w-full"
                 :value="old('fecha_nacimiento', $user->fecha_nacimiento)" autofocus autocomplete="fecha_nacimiento" />
             <x-input-error class="mt-2" :messages="$errors->get('fecha_nacimiento')" />
-        </div>
+        </div> --}}
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
             @if (session('status') === 'profile-updated')

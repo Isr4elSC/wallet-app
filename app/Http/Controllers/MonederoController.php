@@ -121,22 +121,24 @@ class MonederoController extends Controller
         $comercio = Comercio::find($transaccion->comercio_id);
 
         if ($transaccion->estado == 'Pendiente') {
-            $transaccion->estado = 'Realizada';
-            $transaccion->update();
-
             if (($transaccion->tipo_transaccion == 'Compra') && ($monedero->saldo >= $transaccion->cantidad)) {
                 $monedero->saldo -= $transaccion->cantidad;
                 $comercio->saldo += $transaccion->cantidad;
-                $monedero->update();
-                $comercio->update();
-                // notificar al email del comercio de la transacción realizada
-
-                return redirect()->route('monedero.usuario')->with('status', 'Transacción aceptada');
+            } elseif (($transaccion->tipo_transaccion == 'Recarga') || ($transaccion->tipo_transaccion == 'Premio')) {
+                $monedero->saldo += $transaccion->cantidad;
+                $comercio->saldo -= $transaccion->cantidad;
             } else {
                 return redirect()->route('monedero.usuario')->with('status', 'Sin saldo suficiente');
             }
+            $monedero->update();
+            $comercio->update();
+            $transaccion->estado = 'Realizada';
+            $transaccion->update();
+            // notificar al email del comercio de la transacción realizada                
+            return redirect()->route('monedero.usuario')->with('status', 'Transacción aceptada');
+        } else {
+            return redirect()->route('monedero.usuario')->with('status', 'No se puede realizar la operación. La transacción esta ' . $transaccion->estado);
         }
-        return redirect()->route('monedero.usuario')->with('status', 'No se puede realizar la operación. La transacción esta ' . $transaccion->estado);
     }
 
     function rechazarPago(Request $request)

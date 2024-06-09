@@ -102,12 +102,12 @@ class RoleSeeder extends Seeder
         )->syncRoles($admin);
 
         //Comercios
-        // Permission::create(
-        //     [
-        //         'name' => 'comercios.create',
-        //         'description' => 'Crear comercios'
-        //     ]
-        // )->syncRoles($admin, $cliente, $comercio);
+        Permission::create(
+            [
+                'name' => 'crear-comercio',
+                'description' => 'Crear comercios'
+            ]
+        )->syncRoles($admin, $cliente, $comercio);
         // Permission::create(
         //     [
         //         'name' => 'comercios.edit',

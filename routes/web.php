@@ -78,8 +78,8 @@ Route::patch('/user/monedero/rechazar/', [MonederoController::class, 'rechazarPa
 Route::patch('/user/monedero/pagar/', [MonederoController::class, 'aceptarPago'])->name('venta.pagar')->middleware('auth')->middleware('can:realizar-compras');
 
 //Rutas para visualizar los comercios del usuario
-Route::get('/user/comercio/', [ComercioController::class, 'acceder'])->name('comercio.usuario')->middleware('auth')->middleware('can:usar-comercios');
-Route::get('/user/comercio/nuevo', [ComercioController::class, 'iniciar'])->name('comercio.iniciar')->middleware('auth')->middleware('can:usar-comercios');
+Route::get('/user/comercio/', [ComercioController::class, 'acceder'])->name('comercio.usuario')->middleware('auth')->middleware('can:crear-comercio');
+Route::get('/user/comercio/nuevo', [ComercioController::class, 'iniciar'])->name('comercio.iniciar')->middleware('auth')->middleware('can:crear-comercio');
 Route::post('/user/comercio/edit', [ComercioController::class, 'crearComercio'])->name('comercio.create')->middleware('auth')->middleware('can:usar-comercios');
 Route::post('/user/comercio/', [ComercioController::class, 'crearComercio'])->name('comercio.store')->middleware('auth')->middleware('can:usar-comercios');
 

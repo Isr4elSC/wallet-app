@@ -38,7 +38,7 @@
                                             class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                             Usuarios</h5>
                                     </a>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Panel de
+                                    <p class="mb-6 font-normal text-gray-700 dark:text-gray-400">Panel de
                                         administración de usuarios</p>
                                     <a href="{{ route('users.index') }}"
                                         class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Usuarios</a>
@@ -52,7 +52,7 @@
                                             class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                             Monederos</h5>
                                     </a>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Panel de
+                                    <p class="mb-6 font-normal text-gray-700 dark:text-gray-400">Panel de
                                         administración de Monederos</p>
                                     <a href="{{ route('monederos.index') }}"
                                         class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Monederos</a>
@@ -66,7 +66,7 @@
                                             class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                             Comercios</h5>
                                     </a>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                    <p class="mb-6 font-normal text-gray-700 dark:text-gray-400">
                                         Panel de adminstración de comercios</p>
                                     <a href="{{ route('comercios.index') }}"
                                         class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Comercios</a>
@@ -80,7 +80,7 @@
                                             class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                             Transacciones</h5>
                                     </a>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Panel de
+                                    <p class="mb-6 font-normal text-gray-700 dark:text-gray-400">Panel de
                                         administración de transacciones</p>
                                     <a href="{{ route('transacciones.index') }}"
                                         class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Transacciones</a>
@@ -94,7 +94,7 @@
                                             class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                             Promociones</h5>
                                     </a>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Panel de
+                                    <p class="mb-6 font-normal text-gray-700 dark:text-gray-400">Panel de
                                         administración de Promociones</p>
                                     <a href="{{ route('promociones.index') }}"
                                         class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Promociones</a>
@@ -108,7 +108,7 @@
                                             class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                             Sorteos</h5>
                                     </a>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Panel de
+                                    <p class="mb-6 font-normal text-gray-700 dark:text-gray-400">Panel de
                                         administración de Sorteos</p>
                                     <a href="{{ route('sorteos.index') }}"
                                         class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Sorteos</a>
@@ -137,32 +137,30 @@
                                     <a href="{{ route('monedero.usuario') }}">
                                         <h5
                                             class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                            Tu Monedero</h5>
+                                            Mi Monedero</h5>
                                     </a>
-                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Panel de
+                                    <p class="mb-6 font-normal text-gray-700 dark:text-gray-400">Panel de
                                         gestión de tu monedero</p>
                                     <a href="{{ route('monedero.usuario') }}"
-                                        class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Mi
+                                        class=" bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Mi
                                         monedero</a>
                                 </div>
                             </div>
-                            @if (Auth::user()->hasRole('Comercio') && isset(Auth::user()->comercio))
-                                <div class="w-full md:w-1/3 p-4">
-                                    <div
-                                        class="px-6 py-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                        <a href="{{ route('comercio.usuario') }}">
-                                            <h5
-                                                class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                                Tu Comercio</h5>
-                                        </a>
-                                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Panel para
-                                            gestionar tu comercio</p>
-                                        <a href="{{ route('comercio.usuario') }}"
-                                            class="bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Mi
-                                            comercio</a>
-                                    </div>
+                            <div class="w-full md:w-1/3 p-4">
+                                <div
+                                    class="px-6 py-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                    <a href="{{ route('comercio.usuario') }}">
+                                        <h5
+                                            class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                            Mi Comercio</h5>
+                                    </a>
+                                    <p class="mb-6 font-normal text-gray-700 dark:text-gray-400">Panel para
+                                        gestionar tu comercio</p>
+                                    <a href="{{ route('comercio.usuario') }}"
+                                        class=" bg-sky-500 hover:bg-primary-800 text-white font-base py-2 px-4 rounded">Mi
+                                        comercio</a>
                                 </div>
-                            @endif
+                            </div>
                         </div>
                 @endif
             </div>
