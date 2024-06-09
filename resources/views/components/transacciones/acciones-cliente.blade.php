@@ -9,7 +9,7 @@
                              <input type="hidden" name="transaccion_id" id="transaccion_id" value="{{ $transaccion->id }}">
                              <button type="submit"
                                  class="px-3 py-2 text-xs uppercase font-medium text-center inline-flex items-center text-white bg-green-500 rounded-lg hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                 Pagar
+                                 Aceptar
                              </button>
                          </form>
                      </div>

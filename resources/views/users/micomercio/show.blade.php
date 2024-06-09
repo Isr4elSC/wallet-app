@@ -47,7 +47,7 @@
                     </div>
                     <div class="w-1/2 p-4 hover:bg-gray-100 py-2">
                         <h2 class="text-sm text-gray-500 dark:text-white">Saldo: </h2>
-                        <p class="mb-2 text-base text-gray-800 dark:text-white">{{ $comercio->saldo }}</p>
+                        <p class="mb-2 text-base text-gray-800 dark:text-white">{{ $comercio->saldo }} €</p>
                     </div>
                 </div>
                 <div class="my-4 py-4">
