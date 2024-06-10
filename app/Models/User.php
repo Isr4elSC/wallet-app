@@ -3,14 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-use App\Models\Transaccion;
-use App\Models\ParticipacionSorteo;
-use Spatie\Permission\Models\Role;
-use Illuminate\Http\Request;
+
 
 class User extends Authenticatable
 {
@@ -22,12 +18,6 @@ class User extends Authenticatable
         'nombre',
         'email',
         'password',
-        // 'apellidos',
-        // 'dni',
-        // 'fecha_nacimiento',
-        // 'telefono',
-        // 'direccion',
-        // 'foto_perfil'
     ];
 
     protected $hidden = [
