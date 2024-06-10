@@ -19,12 +19,13 @@ class TransaccionFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_monedero' => Monedero::all()->random()->id,
-            'id_comercio' => Comercio::all()->random()->id,
+            'monedero_id' => Monedero::all()->random()->id,
+            'comercio_id' => Comercio::all()->random()->id,
             'fecha_transaccion' => $this->faker->date(),
-            'cantidad' => $this->faker->randomFloat(2, 0, 1000),
-            'tipo_transaccion' => "compra",
-            'estado' => "pendiente"
+            'cantidad' => $this->faker->randomFloat(2, 0, 100),
+            'concepto' => $this->faker->text(40),
+            'tipo_transaccion' => "Compra",
+            'estado' => "Pendiente"
         ];
     }
 }

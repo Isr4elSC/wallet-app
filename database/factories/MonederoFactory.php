@@ -17,10 +17,12 @@ class MonederoFactory extends Factory
      */
     public function definition(): array
     {
+        $valor = 100.00;
+        $usuario = User::all()->random()->assignRole('Comercio');
         return [
             //
-            'id_usuario' => User::all()->random()->id,
-            'saldo' => $this->faker->randomFloat(2, 0, 1000)
+            'user_id' => $usuario,
+            'saldo' => $valor,
         ];
     }
 }

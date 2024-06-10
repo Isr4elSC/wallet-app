@@ -26,8 +26,15 @@ class UserFactory extends Factory
         return [
             'nombre' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            // 'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'email_verified_at' => now(),
+            'password' => static::$password ??= Hash::make('12345678'),
+            // 'apellidos' => fake()->lastName(),
+            // 'dni' => fake()->unique()->text(9),
+            // 'fecha_nacimiento' => fake()->date(),
+            // 'telefono' => fake()->phoneNumber(),
+            // 'direccion' => fake()->address(),
+            // 'foto_perfil' => fake()->imageUrl(),
+
             // 'remember_token' => Str::random(10),
         ];
     }

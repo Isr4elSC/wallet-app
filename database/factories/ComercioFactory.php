@@ -18,17 +18,18 @@ class ComercioFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::all()->random()->id, // Selecciona un usuario aleatorio (id
-            'nombre_comercio' => $this->faker->name(),
-            'descripcion' => $this->faker->text(),
-            'categoria' => $this->faker->word(),
+            'user_id' => rand(0, 14), // Selecciona un usuario aleatorio (id
+            'nombre' => $this->faker->name(),
+            'nif' => $this->faker->unique()->text(9),
             'direccion' => $this->faker->address(),
+            'poblacion' => $this->faker->city(),
+            'provincia' => $this->faker->state(),
+            'cp' => $this->faker->postcode(),
             'telefono' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'logo' => $this->faker->imageUrl(),
-            'pagina_web' => $this->faker->url(),
-            'calificacion' => $this->faker->randomFloat(2, 0, 10),
-            'saldo_disponible' => $this->faker->randomFloat(2, 0, 1000),
+            'web' => $this->faker->url(),
+            'saldo' => 0,
         ];
     }
 }

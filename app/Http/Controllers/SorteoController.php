@@ -2,35 +2,89 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sorteo;
-use App\Models\Comercio;
 
 class SorteoController extends Controller
 {
-    public function crearSorteo(Request $request)
+    // sin implementar
+
+    public function index()
     {
-        // Validar datos de entrada (nombre, descripción, fecha, premio, etc.)
+        return view('admin.sorteos.index');
+    }
+
+    public function create()
+    {
+        return view('admin.sorteos.create');
+    }
+
+    public function store(Request $request)
+    {
         $datos = $request->validate([
-            'nombre_sorteo' => 'required|string|max:255',
-            'descripcion' => 'required|text',
-            'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'required|date|after:fecha_inicio',
-            'premio' => 'required|string',
-            'numero_ganadores' => 'required|integer|min:1',
-            'condiciones' => 'required|text'
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string',
+            'fecha' => 'required|date',
+            'hora' => 'required|time',
+            'premio' => 'required|numeric',
+            'estado' => 'required|string'
         ]);
 
-        // Obtener el comercio del usuario autenticado
-        $comercio = Comercio::find(auth()->user()->id);
+        $sorteo = Sorteo::create($datos);
 
-        // Crear sorteo en la base de datos
-        $sorteo = new Sorteo($datos);
-        $sorteo->comercio()->associate($comercio);
-        $sorteo->save();
+        return redirect()->route('sorteos.index', $sorteo)->with('status', 'Sorteo creado con éxito');
+    }
 
-        // Redireccionar a la página de gestión de sorteos del comercio
-        return redirect()->route('comercio.sorteos')->with('success', 'Sorteo creado correctamente.');
+    public function show(Sorteo $sorteo)
+    {
+        return view('admin.sorteos.show', ['sorteo' => $sorteo]);
+    }
+
+    public function edit(Sorteo $sorteo)
+    {
+        return view('admin.sorteos.edit', ['sorteo' => $sorteo]);
+    }
+
+    public function update(Request $request, Sorteo $sorteo)
+    {
+        $datos = $request->validate([
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string',
+            'fecha' => 'required|date',
+            'hora' => 'required|time',
+            'premio' => 'required|numeric',
+            'estado' => 'required|string'
+        ]);
+
+        $sorteo->update($datos);
+
+        return redirect()->route('sorteos.index', $sorteo)->with('status', 'Sorteo actualizado con éxito');
+    }
+
+    public function destroy(Sorteo $sorteo)
+    {
+        $sorteo->delete();
+
+        return redirect()->route('sorteos.index')->with('status', 'Sorteo eliminado con éxito');
+    }
+
+    public function participar(Sorteo $sorteo)
+    {
+        // sin implementar
+    }
+
+    public function sortear(Sorteo $sorteo)
+    {
+        // sin implementar
+    }
+
+    public function ganadores(Sorteo $sorteo)
+    {
+        // sin implementar
+    }
+
+    public function finalizar(Sorteo $sorteo)
+    {
+        // sin implementar
     }
 }

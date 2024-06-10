@@ -13,18 +13,17 @@ class Comercio extends Model
 
     protected $fillable = [
         'user_id',
-        'nombre_comercio',
-        'descripcion',
-        'categoria',
+        'nombre',
+        'nif',
         'direccion',
+        'poblacion',
+        'provincia',
+        'cp',
         'telefono',
         'email',
         'logo',
-        'pagina_web',
-        'calificacion',
-        'saldo_disponible',
-        'created_at',
-        'updated_at'
+        'web',
+        'saldo',
     ];
 
     public function transacciones()
@@ -32,8 +31,14 @@ class Comercio extends Model
         return $this->hasMany(Transaccion::class);
     }
 
-    public function sorteos()
+
+    public function user()
     {
-        return $this->hasMany(Sorteo::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function Promocion()
+    {
+        return $this->hasMany(Promocion::class);
     }
 }

@@ -12,7 +12,7 @@ class ParticipacionSorteo extends Model
     protected $table = 'participaciones_sorteos';
 
     protected $fillable = [
-        'id_usuario',
+        'user_id',
         'id_sorteo',
         'fecha_participacion'
     ];

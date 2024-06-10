@@ -12,21 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comercios', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('user_id')->unsigned()->index();
-            $table->string('nombre_comercio');
-            $table->text('descripcion')->nullable();
-            $table->string('categoria');
+            $table->id()->unique()->index();
+            $table->bigInteger('user_id')->unsigned()->unique();
+            $table->string('nombre');
+            $table->string('nif')->unique();
             $table->string('direccion');
+            $table->string('poblacion');
+            $table->string('provincia');
+            $table->string('cp');
             $table->string('telefono')->nullable();
             $table->string('email')->unique();
+            $table->string('web')->nullable();
             $table->string('logo')->nullable();
-            $table->string('pagina_web')->nullable();
-            $table->decimal('calificacion', 10, 2)->nullable();
-            $table->decimal('saldo_disponible', 10, 2)->default(0);
+            $table->decimal('saldo', 10, 2)->default(0);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -35,6 +36,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('comercios', function (Blueprint $table) {
+            $table->dropForeign('comercios_user_id_foreign');
+            $table->dropColumn('user_id');
+        });
         Schema::dropIfExists('comercios');
     }
 };

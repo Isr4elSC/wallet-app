@@ -12,17 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('monederos', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('id_usuario')->unsigned()->index();
+            $table->id()->unique()->index();
+            $table->bigInteger('user_id')->unsigned()->unique();
             $table->decimal('saldo', 8, 2);
-            // $table->string('tipo');
-            // $table->string('estado');
-            // $table->string('descripcion');
-            // $table->string('codigo');
-            // $table->string('referencia');
-            // $table->string('comentario');
             $table->timestamps();
-            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
